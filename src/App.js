@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
+import { Client as Styletron } from "styletron-engine-atomic";
+
+const debug =
+  process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
+
+// 1. Create a client engine instance
+const engine = new Styletron();
 
 function App() {
+
   return (
+    <StyletronProvider value={engine} debug={debug} debugAfterHydration>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
       </header>
     </div>
+    </StyletronProvider>
   );
 }
 
