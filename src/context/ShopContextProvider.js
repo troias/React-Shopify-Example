@@ -7,7 +7,8 @@ const defaultReducerState = {
     product: {},
     checkout: {},
     isCartOpen: false,
-    test: "testing"
+    test: "testing", 
+    cart: {}
 
 }
 
@@ -26,44 +27,44 @@ const clientWithTranslatedContent = Client.buildClient({
 const shopReducer = (state, action) => {
     switch (action.type) {
         case "FETCH_PRODUCTS":
-           return  {
-            ...state, 
-            products: action.payload
-        }
+            return {
+                ...state,
+                products: action.payload
+            }
         case "SET_CART":
 
-            return { 
-                ...state, 
+            return {
+                ...state,
                 checkout: action.payload
             }
-            
-            case "FETCH_PRODUCT_BY_ID":
-            
-            return { 
-                ...state, 
+
+        case "FETCH_PRODUCT_BY_ID":
+
+            return {
+                ...state,
                 product: action.payload
             }
 
-            case "ClOSE_CART":
-            
-                return { 
-                    ...state, 
-                    isCartOpen: false
-                }
+        case "ClOSE_CART":
 
-                case "OPEN_CART":
-            
-                    return { 
-                        ...state, 
-                        isCartOpen: true
-                    }
+            return {
+                ...state,
+                isCartOpen: false
+            }
 
-                    case "ADD_LINE_ITEM":
-            
-                        return { 
-                            ...state, 
-                            isCartOpen: true
-                        }
+        case "OPEN_CART":
+
+            return {
+                ...state,
+                isCartOpen: true
+            }
+
+        case "ADD_LINE_ITEM":
+
+            return {
+                ...state,
+                checkout: action.payload
+            }
         default:
             return state
 
@@ -100,24 +101,24 @@ export const ShopContextProvider = (props) => {
 
     }
 
-    const addItemToCart = async (variantId, quantity, customAttributes) => {
-        try {   
-            const checkoutId = ""
+    const addItemToCheckout = async (variantId, quantity, customAttributes) => {
+        try {
+            const checkoutId = shopState.checkout.id
             const lineItemsToAdd = [
-                {variantId, quantity, customAttributes}
+                { variantId, quantity, customAttributes }
             ]
             const req = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
             const res = await req
 
             dispatch({
-                type: "", 
+                type: "ADD_LINE_ITEM",
                 payload: res,
             })
-            
+
         } catch (error) {
-            
+
         }
-      
+
     }
 
     const fetchAllProducts = async () => {
@@ -126,14 +127,14 @@ export const ShopContextProvider = (props) => {
             const res = await products
 
             dispatch({
-                type: "FETCH_PRODUCTS", 
+                type: "FETCH_PRODUCTS",
                 payload: res
 
             })
         } catch (error) {
-            
+
         }
-     
+
     }
 
     const fetchProductWithId = async (id) => {
@@ -143,23 +144,23 @@ export const ShopContextProvider = (props) => {
             const res = await product
 
             dispatch({
-                type: "FETCH_PRODUCT_BY_ID", 
+                type: "FETCH_PRODUCT_BY_ID",
                 payload: res
             })
         } catch (error) {
-            
+
         }
-       
+
     }
 
-    const closeCart = async () => {
+    const closeCart = () => {
 
         dispatch({
             type: "ClOSE_CART"
         })
     }
 
-    const openCart = async () => {
+    const openCart = () => {
 
         dispatch({
             type: "OPEN_CART"
@@ -174,7 +175,14 @@ export const ShopContextProvider = (props) => {
         product: shopState.product,
         checkout: shopState.checkout,
         isCartOpen: shopState.isCartOpen,
-        test: shopState.test
+        test: shopState.test,
+        createCheckout,
+        openCart, 
+        closeCart, 
+        fetchProductWithId, 
+        fetchAllProducts, 
+        addItemToCheckout,
+       
     }
 
     return (

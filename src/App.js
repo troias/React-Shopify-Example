@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
+
+
 import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
 import HomePage from "./pages/HomePage"
@@ -10,7 +10,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import NavBar from './component/UI/NavBar/NavBar'
 import ProductPage from './pages/ProductPage'
+import Cart from './pages/Cart/Cart'
 
 
 const debug =
@@ -27,15 +29,17 @@ function App() {
         <Router>
           <div className="App">
             <header className="App-header">
-              <li>
+            <NavBar/>
+            <Cart/>
+              {/* <li>
                 <Link to="about">Product Page</Link>
               </li>
               <li>
                 <Link to="/">Home Page</Link>
-              </li>
+              </li> */}
 
               <Switch>
-                <Route path="/about">
+                <Route path="/product/:id">
                   <ProductPage />
                 </Route>
                 <Route path="/">
