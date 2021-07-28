@@ -13,11 +13,11 @@ function App() {
 
   return (
     <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-    <div className="App">
-      <header className="App-header">
+      <div className="App">
+        <header className="App-header">
 
-      </header>
-    </div>
+        </header>
+      </div>
     </StyletronProvider>
   );
 }
