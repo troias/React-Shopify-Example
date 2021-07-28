@@ -5,11 +5,12 @@ import { Text, Div, Button, Row, Col, Container } from "atomize";
 
 const ProductPage = () => {
     let { id } = useParams();
-    const { fetchProductWithId, addItemToCheckout, product } =
+    const { fetchProductWithId, addItemToCheckout, product, openCart } =
         useContext(ShopContext);
 
     useEffect(() => {
         fetchProductWithId(id);
+   
     }, []);
 
     console.log(product);
@@ -20,7 +21,8 @@ const ProductPage = () => {
 
     const onPurchaseHandler = () => {
         console.log("onPurchaseHandler", product.variants[0].id )
-        addItemToCheckout(product.variants[0].id, 1);
+        addItemToCheckout(product.variants[0].id, 2);
+        // openCart()
     };
 
     return (

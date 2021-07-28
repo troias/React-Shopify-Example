@@ -4,8 +4,11 @@ import { Div, SideDrawer, Text, Row, Col, Anchor, Button } from 'atomize'
 
 const Cart = () => {
 
-    const { isCartOpen, closeCart, checkout } = useContext(ShopContext)
- 
+    const { isCartOpen, closeCart, checkout, fetchCheckOut } = useContext(ShopContext)
+    const fetchCheckoutHandler = () => {
+        fetchCheckOut(localStorage.getItem("checkout_id"))
+        console.log("fetchCheckOut", checkout)
+    }
     console.log(isCartOpen)
     return (
         <SideDrawer isOpen={isCartOpen} onClose={closeCart}>
@@ -18,7 +21,7 @@ const Cart = () => {
                 {checkout.lineItems && checkout.lineItems.map(item => (
                     <Row key={item.id}>
                         <Col>
-                            <Div bgImg={item.variant.image.src} bgSize="cover" bgPosition="center center" w="4rem" h="5rem" />
+                            <Div bgImg={item.variant.image.src} bgSize="cover" bgposition="center center" w="4rem" h="5rem" />
 
                         </Col>
                         <Col>
@@ -40,6 +43,7 @@ const Cart = () => {
                 bottom: "0",
                 marginBottom: "2rem"
             }}  w="100%" onClick={closeCart}>Close</Button>
+            <Button onClick={fetchCheckoutHandler}>Fetch Checkout </Button>
             </Div>
           
         </SideDrawer>

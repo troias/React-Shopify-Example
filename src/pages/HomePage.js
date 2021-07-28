@@ -25,7 +25,7 @@ const HomePage = () => {
                 <Div
                   h="20rem"
                   bgSize="cover"
-                  bgPosition="center"
+                  bgPos="center"
                   bgImg={product.images[0].src}
                 />
 

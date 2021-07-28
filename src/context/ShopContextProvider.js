@@ -7,7 +7,7 @@ const defaultReducerState = {
     product: {},
     checkout: {},
     isCartOpen: false,
-    test: "testing", 
+    test: "testing",
     cart: {}
 
 }
@@ -59,6 +59,13 @@ const shopReducer = (state, action) => {
                 isCartOpen: true
             }
 
+        case "FETCH_CHECKOUT":
+
+            return {
+                ...state,
+                checkout: action.payload
+            }
+
         case "ADD_LINE_ITEM":
 
             return {
@@ -78,26 +85,43 @@ export const ShopContextProvider = (props) => {
     const [shopState, dispatch] = useReducer(shopReducer, defaultReducerState)
 
     useEffect(() => {
-        createCheckout()
-        fetchAllProducts()
+     
+        if (localStorage.checkout) {
+            fetchCheckOut(localStorage.checkout)
+            console.log("Loop entered")
+            console.log("localStorage.checkout", localStorage.checkout_id)
+        } else {
+            createCheckout()
+            console.log("create Loop entered")
+        }
+       
+
+ 
+
+     
     }, [])
 
 
 
     const createCheckout = async () => {
-
+        
         try {
             const checkout = await client.checkout.create()
             const res = await checkout
-            console.log(res)
+
+
+            console.log("res", res)
+            localStorage.setItem('checkout', res.id)
+           
             dispatch({
                 type: "SET_CART",
                 payload: res
             })
+          
         } catch (error) {
-
+            console.log("error", error)
         }
-
+      
 
     }
 
@@ -167,7 +191,20 @@ export const ShopContextProvider = (props) => {
         })
     }
 
+    const fetchCheckOut = async (checkoutID) => {
+        try {
+            const req = await client.checkout.fetch(checkoutID)
+            const res = await req
+            console.log("fetchCheckOut", res)
+            dispatch({
+                type: "FETCH_CHECKOUT", 
+                payload: res
+            })
+        } catch (error) {
 
+        }
+
+    }
 
 
     const context = {
@@ -177,12 +214,14 @@ export const ShopContextProvider = (props) => {
         isCartOpen: shopState.isCartOpen,
         test: shopState.test,
         createCheckout,
-        openCart, 
-        closeCart, 
-        fetchProductWithId, 
-        fetchAllProducts, 
+        openCart,
+        closeCart,
+        fetchProductWithId,
+        fetchAllProducts,
         addItemToCheckout,
-       
+        fetchCheckOut, 
+        
+
     }
 
     return (
