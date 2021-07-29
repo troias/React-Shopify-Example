@@ -1,19 +1,14 @@
-
-
 import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
-import HomePage from "./pages/HomePage"
-import ShopContextProvider from "./context/ShopContextProvider"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import NavBar from './component/UI/NavBar/NavBar'
-import ProductPage from './pages/ProductPage'
-import Cart from './pages/Cart/Cart'
+import HomePage from "./pages/HomePage";
+import ShopContextProvider from "./context/ShopContextProvider";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NavBar from "./component/UI/NavBar/NavBar";
+import ProductPage from "./pages/ProductPage";
+import Cart from "./pages/Cart/Cart";
+import Header from "./component/UI/Layout/Header/Header";
 
+import HomePageLayout from "./component/UI/Layout/HomePageLayout";
 
 const debug =
   process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
@@ -22,33 +17,26 @@ const debug =
 const engine = new Styletron();
 
 function App() {
-
   return (
     <ShopContextProvider>
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <Router>
-          <div className="App">
-            <header className="App-header">
-            <NavBar/>
-            <Cart/>
-              {/* <li>
-                <Link to="about">Product Page</Link>
-              </li>
-              <li>
-                <Link to="/">Home Page</Link>
-              </li> */}
+          <HomePageLayout>
+            <Header>
+              <NavBar />
+              <Cart />
+            </Header>
+          
 
-              <Switch>
-                <Route path="/product/:id">
-                  <ProductPage />
-                </Route>
-                <Route path="/">
-                  <HomePage />
-                </Route>
-              </Switch>
-
-            </header>
-          </div>
+            <Switch>
+              <Route path="/product/:id">
+                <ProductPage />
+              </Route>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+            </Switch>
+          </HomePageLayout>
         </Router>
       </StyletronProvider>
     </ShopContextProvider>

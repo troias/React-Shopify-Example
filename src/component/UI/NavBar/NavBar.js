@@ -20,6 +20,7 @@ const NavBar = () => {
             {" "}
             <Link to="/">Shop</Link>
             <Anchor onClick={cartOpenHandler}>Cart</Anchor>
+            
         </Container>
     );
 };

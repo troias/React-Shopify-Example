@@ -22,7 +22,7 @@ const ProductPage = () => {
     const onPurchaseHandler = () => {
         console.log("onPurchaseHandler", product.variants[0].id )
         addItemToCheckout(product.variants[0].id, 2);
-        // openCart()
+        openCart()
     };
 
     return (
