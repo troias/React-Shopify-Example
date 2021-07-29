@@ -1,4 +1,6 @@
-export const theme = {
+
+
+export const theme ={
     colors: {
       brand100: "#F9F8FC",
       brand200: "#F3F1FA",
@@ -10,5 +12,5 @@ export const theme = {
       brand800: "#553EB5",
       brand900: "#382683",
     }
-  };
+  }
   

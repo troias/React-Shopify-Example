@@ -26,8 +26,6 @@ function App() {
               <NavBar />
               <Cart />
             </Header>
-          
-
             <Switch>
               <Route path="/product/:id">
                 <ProductPage />
