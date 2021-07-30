@@ -7,9 +7,9 @@ const Cart = () => {
     const { isCartOpen, closeCart, checkout, fetchCheckOut } = useContext(ShopContext)
     const fetchCheckoutHandler = () => {
         fetchCheckOut(localStorage.getItem("checkout_id"))
-        console.log("fetchCheckOut", checkout)
+     
     }
-    console.log(isCartOpen)
+  
     return (
         <SideDrawer isOpen={isCartOpen} onClose={closeCart}>
             <Div

@@ -88,11 +88,10 @@ export const ShopContextProvider = (props) => {
      
         if (localStorage.checkout) {
             fetchCheckOut(localStorage.checkout)
-            console.log("Loop entered")
-            console.log("localStorage.checkout", localStorage.checkout_id)
+         
         } else {
             createCheckout()
-            console.log("create Loop entered")
+         
         }
        
 
@@ -110,7 +109,6 @@ export const ShopContextProvider = (props) => {
             const res = await checkout
 
 
-            console.log("res", res)
             localStorage.setItem('checkout', res.id)
            
             dispatch({
@@ -119,7 +117,7 @@ export const ShopContextProvider = (props) => {
             })
           
         } catch (error) {
-            console.log("error", error)
+           
         }
       
 
@@ -195,7 +193,7 @@ export const ShopContextProvider = (props) => {
         try {
             const req = await client.checkout.fetch(checkoutID)
             const res = await req
-            console.log("fetchCheckOut", res)
+         
             dispatch({
                 type: "FETCH_CHECKOUT", 
                 payload: res

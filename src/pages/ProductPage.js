@@ -13,14 +13,14 @@ const ProductPage = () => {
    
     }, []);
 
-    console.log(product);
+   
 
     if (!product.title) {
         return <div>Loading...</div>;
     }
 
     const onPurchaseHandler = () => {
-        console.log("onPurchaseHandler", product.variants[0].id )
+    
         addItemToCheckout(product.variants[0].id, 2);
         openCart()
     };

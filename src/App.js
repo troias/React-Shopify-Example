@@ -7,7 +7,7 @@ import NavBar from "./component/UI/NavBar/NavBar";
 import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart/Cart";
 import Header from "./component/UI/Layout/Header/Header";
-
+import ThemeContextProvider from './context/ThemeContextProvider'
 import HomePageLayout from "./component/UI/Layout/HomePageLayout";
 
 const debug =
@@ -19,22 +19,26 @@ const engine = new Styletron();
 function App() {
   return (
     <ShopContextProvider>
+
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
+
         <Router>
-          <HomePageLayout>
-            <Header>
-              <NavBar />
-              <Cart />
-            </Header>
-            <Switch>
-              <Route path="/product/:id">
-                <ProductPage />
-              </Route>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-            </Switch>
-          </HomePageLayout>
+          <ThemeContextProvider>
+            <HomePageLayout>
+              <Header>
+                <NavBar />
+                <Cart />
+              </Header>
+              <Switch>
+                <Route path="/product/:id">
+                  <ProductPage />
+                </Route>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+              </Switch>
+            </HomePageLayout>
+          </ThemeContextProvider>
         </Router>
       </StyletronProvider>
     </ShopContextProvider>
