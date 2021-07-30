@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import ShopList from "../component/Product/ShopList"
 import ShopContext from "../context/ShopContext";
 import  ThemeContext  from "../context/ThemeContext"
 import { Container, Row, Div } from "atomize";
+import HeroSection from '../pages/HeroSection/HeroSection'
+import Collections from './Collections'
+import Footer from '../component/UI/Layout/Footer/Footer'
 
 
 const HomePage = () => {
@@ -25,9 +27,15 @@ const HomePage = () => {
     <Container   >
       <Div style={{
         backgroundColor: colors.brand100
-      }} >
+      }} 
+      bgSize="cover"
+      bgPos="center" >
         <Row>
-          <ShopList products={products} />
+          <HeroSection style={{
+            marginBottom: "20rem"
+          }}/>
+          <Collections/>
+       
         </Row>
       </Div>
     </Container>

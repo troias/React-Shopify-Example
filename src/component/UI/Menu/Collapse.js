@@ -26,6 +26,7 @@ const Collapse = (props) => {
         shadow="2"
         hoverBg="#00FF7F"
         opacity="90%"
+        className={props.className}
       >
         {props.title}
       </Dropdown>

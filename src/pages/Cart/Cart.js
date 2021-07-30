@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import ShopContext from '../../context/ShopContext'
 import { Div, SideDrawer, Text, Row, Col, Anchor, Button } from 'atomize'
+import ThemeProvider from '../../context/ThemeContext'
 
 const Cart = () => {
 
     const { isCartOpen, closeCart, checkout, fetchCheckOut } = useContext(ShopContext)
+  
     const fetchCheckoutHandler = () => {
         fetchCheckOut(localStorage.getItem("checkout_id"))
      

@@ -5,22 +5,23 @@ import ShopContext from '../../context/ShopContext'
 
  const ShopList = () => {
 
-  const {products} = useContext(ShopContext)
+  const { products} = useContext(ShopContext)
     return (
         <>
         {products.map((product) => (
             <Col key={product.id} size="3">
               <Link to={`/product/${product.id}`}>
                 <Div p="2rem">
-                  <Text>{product.title}</Text>
+                 
                   <Div
-                    h="20rem"
+                    h="10rem"
+                    w="10rem"
                     bgSize="cover"
                     bgPos="center"
                     bgImg={product.images[0].src}
                   />
-  
-                  <Text>{product.description}</Text>
+                  <Text textColor="black" >{product.title}</Text>
+                  {/* <Text>{product.description}</Text> */}
                   <Text>{product.variants[0].price}</Text>
                 </Div>
               </Link>

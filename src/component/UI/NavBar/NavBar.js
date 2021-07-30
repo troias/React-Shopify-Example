@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Anchor, Div, Input } from "atomize";
 import { Link } from "react-router-dom";
 import ShopContext from "../../../context/ShopContext";
@@ -7,17 +7,25 @@ import { FaShoppingCart } from "react-icons/fa";
 import Collapse from "../../UI/Menu/Collapse";
 import classes from "./NavBar.module.css"
 import ThemeContext from '../../../context/ThemeContext'
+
 // import {ReactComponent as ReactLogo} from '../../../Assets/Images/Logo/Logo.svg';
 
 const NavBar = () => {
+  
     const { openCart } = useContext(ShopContext);
-    const {toggleTheme, darkMode, test, tester } = useContext(ThemeContext)
+    const {toggleTheme, darkMode } = useContext(ThemeContext)
+    const [ width, setWidth] = useState(0)
 
-    
+
+    useEffect(() => {
+        const width = document.getElementById('menu').clientWidth
+        console.log(width)
+        setWidth(width)
+    }, [])
 
     const options = [
         { title: "Products", url: "/products", id: 1 },
-        { title: "Collection", url: "/collection" , id: 2},
+        { title: "Collection", url: "/collections" , id: 2},
         { title: "Sales", url: "/sales", id: 3 }]
  
     const options1 = [
@@ -40,17 +48,19 @@ const NavBar = () => {
         <Container
             d="flex"
             justify="space-between"
-            flex-wrap="wrap"
+            
             style={{
                 alignItems: "center",
             }}
            
+           
         >   
-            <Div d="flex">
+            <Div d="flex"
+           >
                 <Div  onClick={darkModeHandler} 
-                >
+                className={classes.theme}>
                     <Link to="/" >
-                        <Logo />
+                        <Logo  />
                     </Link>
                 </Div>
                 <Div
@@ -58,17 +68,19 @@ const NavBar = () => {
                         alignSelf: "center",
 
                     }}
-                  
-                    m="2rem"
-                    active="red"
+                   id="menu"
+                    className={classes.button1}
                 >
-                    <Collapse options={options} title={"Shop"}  />
-
+                    <Collapse options={options} title={width < 800 ? "menu" : "shop"}   />
+                    {console.log(width)}
                 </Div>
             </Div>
 
-            <Div d="flex">
+            <Div d="flex"
+               
+            >
                 <Input
+                    className={classes.search}
                     placeholder="Search"
                     textAlign="center"
 
@@ -84,8 +96,10 @@ const NavBar = () => {
                 <Div
                     style={{
                         alignSelf: "center",
+                        marginRight: "1rem"
                     }}
                     m="1rem"
+                    className={classes.account}
                 >
                     <Collapse options={options1} title={"Account"} />
                 </Div>
@@ -94,6 +108,7 @@ const NavBar = () => {
                     style={{
                         alignSelf: "center",
                     }}
+                    className={classes.cart}
                 >
                     <Anchor onClick={cartOpenHandler} m="1rem">
                         <FaShoppingCart size={40} color={darkMode ? "white": "black"}  />

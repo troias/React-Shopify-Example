@@ -5,10 +5,14 @@ import ShopContextProvider from "./context/ShopContextProvider";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./component/UI/NavBar/NavBar";
 import ProductPage from "./pages/ProductPage";
+import Products from "./pages/Products"
 import Cart from "./pages/Cart/Cart";
 import Header from "./component/UI/Layout/Header/Header";
 import ThemeContextProvider from './context/ThemeContextProvider'
 import HomePageLayout from "./component/UI/Layout/HomePageLayout";
+import Collections from './pages/Collections'
+import Footer from './component/UI/Layout/Footer/Footer'
+import { FooterWrapper } from './component/UI/Layout/Footer/FooterWrapper'
 
 const debug =
   process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
@@ -29,15 +33,27 @@ function App() {
                 <NavBar />
                 <Cart />
               </Header>
+
               <Switch>
                 <Route path="/product/:id">
                   <ProductPage />
+                </Route>
+                <Route path="/products">
+                  <Products />
+                </Route>
+                <Route path="/Collections">
+                  <Collections />
                 </Route>
                 <Route exact path="/">
                   <HomePage />
                 </Route>
               </Switch>
+              <FooterWrapper>
+                <Footer />
+              </FooterWrapper>
+
             </HomePageLayout>
+
           </ThemeContextProvider>
         </Router>
       </StyletronProvider>
