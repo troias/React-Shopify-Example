@@ -5,7 +5,7 @@ import { Container, Row, Div } from "atomize";
 import HeroSection from '../pages/HeroSection/HeroSection'
 import Collections from './Collections'
 import Footer from '../component/UI/Layout/Footer/Footer'
-
+import Carousel from '../component/UI/Carousel/Carousel'
 
 const HomePage = () => {
   const { fetchAllProducts, products } = useContext(ShopContext);
@@ -34,8 +34,8 @@ const HomePage = () => {
           <HeroSection style={{
             marginBottom: "20rem"
           }}/>
-          <Collections/>
-       
+          {/* <Collections/> */}
+          <Carousel/>
         </Row>
       </Div>
     </Container>
