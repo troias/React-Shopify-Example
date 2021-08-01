@@ -45,7 +45,7 @@ const Carousel = () => {
     return (
         <Div
             w="100%"
-            h="100vh"
+            h="100%"
             d="flex"
             justify="center"
             align="Center"

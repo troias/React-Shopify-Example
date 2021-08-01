@@ -4,14 +4,14 @@ import heroImage from '../../Assets/Images/HeroImage/HeroImage.jpg'
 
 const HeroSection = () => {
     return (
-        <Container>
-            <Div >
+        
+            <Div  >
                 <Image src={heroImage} w="100%" h="30rem"  />
 
 
             </Div>
 
-        </Container>
+      
     )
 }
 
