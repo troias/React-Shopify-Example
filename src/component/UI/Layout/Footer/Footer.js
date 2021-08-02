@@ -1,5 +1,5 @@
 import React from "react";
-import { Div, Text, Row, Col, Container } from "atomize";
+import { Div, Text,  Col,  Input, Button,  } from "atomize";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
@@ -10,89 +10,125 @@ import AllInboxIcon from '@material-ui/icons/AllInbox';
 
 const Footer = () => {
     return (
-        <Div w="100%"
-            h="100%"
-            d="flex"
-            justify="center"
-            align="Center"
-            
-             >
 
 
-            <Row >
-                <Div d="flex"  >
-                    <Div flexDirection="column" align="center" justify="center">
-                        <Col size="10" w="8rem">
-                            <Div m={{ b: "2rem" }} w="100rem" >
-                                <Text w="10rem" textSize="heading" m={{ b: "2rem" }}>
-                                    Follow us{" "}
-                                </Text>
-                                <Text m={{ b: "1rem" }}>
-                                    {" "}
-                                    <FacebookIcon /> Facebook
-                                </Text>
-                                <Text m={{ b: "1rem" }}>
-                                    <InstagramIcon /> Instagram
-                                </Text>
-                                <Text m={{ b: "1rem" }}>
-                                    <TwitterIcon /> Twitter
-                                </Text>
-                            </Div>
-                        </Col>
+
+        <Div d="flex" justify="center" bg="#efefef" >
+            <Div m={{ r: "1rem" }}>
+
+                <Col size="10" w="15rem" maxW="20rem" >
+                    <Div m={{ b: "2rem" }} >
+                        <Text w="10rem" textSize="heading" m={{ b: "2rem"}} >
+                            Follow us
+                        </Text>
+                        <Text m={{ b: "1rem" }} bg="white">
+                         
+                            <FacebookIcon style={{
+                                marginRight: "1rem", marginLeft: "0.2rem"
+                            }}/> Facebook
+                        </Text>
+                        <Text m={{ b: "1rem" }} bg="white">
+                            <InstagramIcon style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }}/> Instagram
+                        </Text>
+                        <Text m={{ b: "1rem" }} bg="white">
+                            <TwitterIcon style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }}/> Twitter
+                        </Text>
                     </Div>
+                </Col>
+            </Div>
 
-                    <Div flexDirection="column" align="center" justify="center">
-                        <Col size="10" w="8rem" maxW="20rem">
-                            <Div m={{ b: "2rem" }}>
-                                <Text w="10rem" textSize="heading" m={{ b: "2rem" }}>
-                                    Categories{" "}
-                                </Text>
-                                <Text m={{ b: "1rem" }}>
-                                    {" "}
-                                    <VisibilityIcon /> Glasses
-                                </Text>
-                                <Text m={{ b: "1rem" }}>
-                                    <AccessibilityIcon /> Jackets
-                                </Text>
-                                <Text m={{ b: "1rem" }}>
-                                    <TwitterIcon /> Shoes
-                                </Text>
-                                <Text m={{ b: "1rem" }}>
-                                    <TwitterIcon /> Shirts
-                                </Text>
-                            </Div>
-                        </Col>
+            <Div m={{ r: "1rem" }} >
+                <Col size="10" w="15rem" maxW="20rem">
+                    <Div m={{ b: "2rem" }}>
+                        <Text w="10rem" textSize="heading" m={{ b: "2rem" }} >
+                            Categories{" "}
+                        </Text>
+                        <Text m={{ b: "1rem" }} bg="white">
+                            {" "}
+                            <VisibilityIcon style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }}/> Glasses
+                        </Text>
+                        <Text m={{ b: "1rem" }} bg="white">
+                            <AccessibilityIcon style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }}/> Jackets
+                        </Text>
+                        <Text m={{ b: "1rem" }} bg="white">
+                            <TwitterIcon style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }}/> Shoes
+                        </Text>
+                        <Text m={{ b: "1rem" }} bg="white">
+                            <TwitterIcon style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }} /> Shirts
+                        </Text>
                     </Div>
+                </Col>
+            </Div>
 
-                    <Div
-
-                        flexDirection="column"
-                        align="center"
-                        justify="center"
-                        w="12rem"
-                    >
-                        <Col size="10" maxW="30rem">
-                            <Div m={{ b: "2rem" }}>
-                                <Text w="15rem" textSize="heading" m={{ b: "2rem" }}>
-                                    Customer Service{" "}
-                                </Text>
-                                <Text d="flex" m={{ b: "1rem" }}>
-                                    {" "}
-                                    <ContactMailIcon /> Contact Us
-                                </Text>
-                                <Text d="flex" m={{ b: "1rem" }}>
-                                    <InstagramIcon />
-                                    Ordering and payment
-                                </Text>
-                                <Text d="flex" m={{ b: "1rem" }}>
-                                    <AllInboxIcon /> Delivery
-                                </Text>
-                            </Div>
-                        </Col>
+            <Div m={{ r: "1rem" }} >
+                <Col size="10"  w="15rem" maxW="30rem">
+                    <Div m={{ b: "2rem" }}>
+                        <Text w="15rem" textSize="heading" m={{ b: "2rem" }}>
+                            Customer Service{" "}
+                        </Text>
+                        <Text d="flex" m={{ b: "1rem" }} bg="white">
+                            {" "}
+                            <ContactMailIcon style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }} /> Contact Us
+                        </Text>
+                        <Text d="flex" m={{ b: "1rem" }} bg="white">
+                            <InstagramIcon  style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }}/>
+                            Ordering and payment
+                        </Text>
+                        <Text d="flex" m={{ b: "1rem" , r: "1rem" }} bg="white">
+                            <AllInboxIcon style={{
+                                marginRight: "1rem",  marginLeft: "0.2rem"
+                            }}/> Delivery
+                        </Text>
                     </Div>
-                </Div>
-            </Row>
+                </Col>
+            </Div>
+
+            <Div m={{ r: "1rem" }} >
+                <Col size="10"  w="15rem" maxW="30rem">
+                    <Div m={{ b: "2rem" }}>
+                        <Text w="15rem" textSize="heading" m={{ b: "2rem" }}>
+                            Sign Up & Save
+                        </Text>
+                        <Text d="flex" m={{ b: "1rem" }} bg="white">
+                            {" "}
+                            <ContactMailIcon style={{
+                                marginRight: "1rem"
+                            }}/>Get £10 off your first order and be the first to hear 
+                            about our latest offers, news & promotions.
+                             £50 minimum spend required. New customers only.
+                        </Text>
+                        <label d="flex" m={{ b: "1rem" }}>
+                        Please enter your email address
+                        </label>
+                        <Input placeholder="sign up" m={{b: "1rem" , t: "1rem" }}/>
+                            
+                       
+                        <Button  d="flex" m={{ b: "1rem" , r: "1rem" }}>
+                            Sign up
+                        </Button >
+                    </Div>
+                </Col>
+            </Div>
+
         </Div>
+
+
 
     );
 };

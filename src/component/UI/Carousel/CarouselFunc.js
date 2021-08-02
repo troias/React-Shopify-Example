@@ -1,31 +1,28 @@
 import React, { useRef, useEffect } from "react";
 import { Button, Image, Div, Container } from "atomize";
 
-
 export const Wrapper = ({ xPosition, children }) => {
-
     return (
-        <Div
-            p="relative"
-            w="55%"
+        <Container
+
+        p="relative"
+        w="55%"
             overflow="hidden"
             boxShadow="0 10px 15px rgba(0, 0, 0, 0.4)"
-
         >
             {children}
-        </Div >
-    )
-}
+        </Container>
+    );
+};
 
 export const Slide = (props) => {
-
     const slideRef = useRef();
 
     useEffect(() => {
         if (slideRef.current) {
             const width = slideRef.current.clientWidth;
             props.setWidth(width);
-            console.log("width", width);
+          
         }
     }, [props.setWidth, props]);
 
@@ -40,29 +37,21 @@ export const Slide = (props) => {
         >
             {props.children}
         </Div>
-    )
-}
-
+    );
+};
 
 const CarouselFunc = ({
     images,
     setWidth,
     xPosition,
     handleClickPrev,
-    handleClicknext }) => {
-
-
-
-
-
-
+    handleClicknext,
+}) => {
     return (
-
-        <Wrapper >
-
-            <Slide xPosition={xPosition} setWidth={setWidth} >
+        <Wrapper>
+                     <Slide xPosition={xPosition} setWidth={setWidth} >
                 {images.map((img, i) => (
-                    <Image src={img} alt="" key={i} w="100%" h="100%" />
+                    <Image src={img} alt="" key={i}  />
                 ))}
             </Slide>
 
@@ -74,8 +63,8 @@ const CarouselFunc = ({
                     <Button onClick={handleClicknext}>Next</Button>
                 </Div>
             </Div>
-        </Wrapper>
 
+        </Wrapper>
     );
 };
 
