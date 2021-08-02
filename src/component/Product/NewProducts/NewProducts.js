@@ -4,6 +4,7 @@ import { Container, Div, Text, Row, Col, Image, Button } from "atomize";
 import p1 from "../../../Assets/Images/dummyProductImages/p1.jpg";
 import p2 from "../../../Assets/Images/dummyProductImages/p1.jpg";
 import p3 from "../../../Assets/Images/dummyProductImages/p1.jpg";
+import p4 from "../../../Assets/Images/dummyProductImages/p1.jpg";
 
 const NewProducts = () => {
     return (
@@ -19,14 +20,16 @@ const NewProducts = () => {
 
                     <Col d="flex" flexWrap="wrap" align="center"  >
 
-                        <Row bg="#CCCBC6" align="center"   m="0.1rem" >
+                        <Row bg={`linear-gradient(217deg, #CCCBC6, rgba(255,0,0,0) 100%)`} align="center"   m="0.1rem" style={{
+                            opacity: "90"
+                        }}>
                             <Col >
                                 <Text textColor="black" m="1rem">Great product nice feel</Text>
                                 <Text textColor="black" m="1rem" textSize="2rem">$126</Text>
                                 <Button m="1rem">Buy now</Button>
                             </Col>
                             <Col   >
-                                <Image src={p1} />
+                                <Image src={p1} h="100%" rounded="md"  rounded={{tl: "circle", bl: "circle"}}/>
                             </Col>
 
                         </Row>
@@ -34,27 +37,27 @@ const NewProducts = () => {
                     </Col>
 
                     <Col d="flex" align="center"  >
-                        <Row bg="#CCCBC6" align="center" >
+                        <Row bg={`linear-gradient(217deg, #CCCBC6, rgba(255,0,0,0) 100%)`} align="center" >
                             <Col>
                                 <Text textColor="black" m="1rem">Great product nice feel</Text>
                                 <Text textColor="black" m="1rem" textSize="2rem">$126</Text>
                                 <Button m="1rem">Buy now</Button>
                             </Col>
                             <Col>
-                                <Image src={p2} h="100%" />
+                                <Image src={p2} h="100%" rounded="md"   rounded={{tl: "circle", bl: "circle"}}/>
                             </Col>
                         </Row>
                     </Col>
 
                     <Col d="flex" align="center"  >
-                        <Row bg="#CCCBC6" align="center" m="0.1rem">
-                            <Col>
+                        <Row bg={`linear-gradient(217deg, #CCCBC6, rgba(255,0,0,0) 100%)`} align="center" m="0.1rem" >
+                            <Col >
                                 <Text textColor="black" m="1rem">Great product nice feel</Text>
                                 <Text textColor="black" m="1rem" textSize="2rem">$126</Text>
                                 <Button m="1rem">Buy now</Button>
                             </Col>
                             <Col>
-                                <Image src={p3} h="100%" />
+                                <Image src={p3} h="100%"  rounded={{tl: "circle", bl: "circle"}} />
                             </Col>
                         </Row>
                     </Col>

@@ -1,10 +1,15 @@
 import React from 'react'
-import {Container} from 'atomize'
+import { Container, Div } from 'atomize'
 
 export const FooterWrapper = (props) => {
     return (
-        <Container d="flex" justify="space-around">
-           {props.children} 
-        </Container>
+        <Div w="100%"
+            h="100%"
+            d="flex"
+            justify="center"
+            align="Center"
+        >
+            {props.children}
+        </Div>
     )
 }
