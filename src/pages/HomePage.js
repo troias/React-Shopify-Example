@@ -32,15 +32,15 @@ const HomePage = () => {
         </Div>
 
         <Row  >
-          {/* <Collections/> */}
+          <NewProducts />
+        </Row>
+        <Row bg="fff" justify="center"  >
+        
 
           <Carousel />
         </Row>
-        <Row  >
-          <NewProducts />
-        </Row>
 
-
+        <Collections />
       </Div>
     </Container>
   );

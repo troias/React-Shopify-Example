@@ -3,7 +3,7 @@ import { Container, Div } from 'atomize'
 
 export const FooterWrapper = (props) => {
     return (
-        <Container  >
+        <Container d="flex" justify="center">
          
                 {props.children}
           
