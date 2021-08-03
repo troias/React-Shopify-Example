@@ -23,15 +23,7 @@ const NavBar = () => {
         setWidth(width)
     }, [])
 
-    const options = [
-        { title: "Products", url: "/products", id: 1 },
-        { title: "Collection", url: "/collections" , id: 2},
-        { title: "Sales", url: "/sales", id: 3 }]
- 
-    const options1 = [
-        { title: "Products", url: "/products", id: 1 },
-        { title: "Collection", url: "/collection", id: 2 },
-        { title: "Sales", url: "/sales", id: 3 }]
+
    
     const cartOpenHandler = () => {
         openCart();
@@ -71,8 +63,8 @@ const NavBar = () => {
                    id="menu"
                     className={classes.button1}
                 >
-                    <Collapse options={options} title={width < 800 ? "menu" : "shop"}   />
-                    {console.log(width)}
+                   
+                
                 </Div>
             </Div>
 
@@ -101,7 +93,7 @@ const NavBar = () => {
                     m="1rem"
                     className={classes.account}
                 >
-                    <Collapse options={options1} title={"Account"} />
+                   
                 </Div>
 
                 <Div

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Div, Tag, Anchor, Icon, Button, Dropdown } from "atomize";
 import { Link } from "react-router-dom";
 const Collapse = (props) => {
-  const [showDropdown, setShowCollapse] = useState(false);
+
 
   const menuList = (
-    <Div >
+    <Div w="0rem" id="">
       {props.options.map((name, index) => (
         <Link key={name.id} to={name.url}>
           <Anchor d="block" p={{ y: "0.25rem" }} >
@@ -15,12 +15,15 @@ const Collapse = (props) => {
       ))}
     </Div>
   );
+
+
   return (
     <>
       <Dropdown
-        
-        isOpen={showDropdown}
-        onClick={() => setShowCollapse(!showDropdown)}
+        border="none"
+        isOpen={props.isOpen}
+        onMouseOver={props.hoverHandler}
+        onClick={props.hoverHandler}
         menu={menuList}
         hoverShadow="4"
         shadow="2"

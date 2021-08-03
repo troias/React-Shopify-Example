@@ -13,6 +13,7 @@ import HomePageLayout from "./component/UI/Layout/HomePageLayout";
 import Collections from './pages/Collections'
 import Footer from './component/UI/Layout/Footer/Footer'
 import { FooterWrapper } from './component/UI/Layout/Footer/FooterWrapper'
+import Menu from './component/UI/Layout/MegaMenu/Menu/Menu'
 
 const debug =
   process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
@@ -32,6 +33,7 @@ function App() {
               <Header>
                 <NavBar />
                 <Cart />
+                <Menu/>
               </Header>
 
               <Switch>
