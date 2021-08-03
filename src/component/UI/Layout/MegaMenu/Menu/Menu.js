@@ -1,35 +1,16 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { Container, Button, Row } from "atomize";
 import Collapse from "../../../Menu/Collapse";
+import { useSelector, useDispatch } from 'react-redux'
 
-const defaultMenuState = {
-    options: [
-        { title: "Products", url: "/products", id: 1 },
-        { title: "Collection", url: "/collection", id: 2 },
-        { title: "Sales", url: "/sales", id: 3 },
-    ],
-    showDropdown: false,
-};
 
-const menuReducer = (state = defaultMenuState, action) => {
-    switch (action.type) {
-        case "SHOW-DROPDOWN":
-            return {
-                ...state,
-                showDropdown: true, 
-            }
-        case "SET-INTIALSTATE":
-            return {
-                ...state
-            }
 
-        default:
-            return state;
-    }
-};
+
 
 const Menu = () => {
-    const [menuState, dispatch] = useReducer(menuReducer, defaultMenuState);
+   
+    const menu = useSelector(state => state.showDropdown) 
+    const dispatch = useDispatch()
 
     useEffect(() =>
        
@@ -58,9 +39,9 @@ const Menu = () => {
                     hoverShadow="4"
                 >
                     <Collapse
-                        options={menuState.options}
+                        options={menu.options}
                         title={"Shop Categories"}
-                        isOpen={menuState.showDropdown}
+                        isOpen={menu.showDropdown}
                         hoverHandler={hoverHandler}
                     />
                 </Button>

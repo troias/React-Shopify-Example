@@ -14,7 +14,8 @@ import Collections from './pages/Collections'
 import Footer from './component/UI/Layout/Footer/Footer'
 import { FooterWrapper } from './component/UI/Layout/Footer/FooterWrapper'
 import Menu from './component/UI/Layout/MegaMenu/Menu/Menu'
-
+import { Provider } from 'react-redux'
+import store  from './reduxStore/Index'
 const debug =
   process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 
@@ -30,30 +31,33 @@ function App() {
         <Router>
           <ThemeContextProvider>
             <HomePageLayout>
-              <Header>
-                <NavBar />
-                <Cart />
-                <Menu/>
-              </Header>
+              <Provider store={store}>
 
-              <Switch>
-                <Route path="/product/:id">
-                  <ProductPage />
-                </Route>
-                <Route path="/products">
-                  <Products />
-                </Route>
-                <Route path="/Collections">
-                  <Collections />
-                </Route>
-                <Route exact path="/">
-                  <HomePage />
-                </Route>
-              </Switch>
-              <FooterWrapper>
-                <Footer />
-              </FooterWrapper>
+                <Header>
+                  <NavBar />
+                  <Cart />
+                  <Menu />
+                </Header>
 
+                <Switch>
+                  <Route path="/product/:id">
+                    <ProductPage />
+                  </Route>
+                  <Route path="/products">
+                    <Products />
+                  </Route>
+                  <Route path="/Collections">
+                    <Collections />
+                  </Route>
+                  <Route exact path="/">
+                    <HomePage />
+                  </Route>
+                </Switch>
+                <FooterWrapper>
+                  <Footer />
+                </FooterWrapper>
+
+              </Provider>
             </HomePageLayout>
 
           </ThemeContextProvider>
