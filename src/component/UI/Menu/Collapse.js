@@ -20,16 +20,28 @@ const Collapse = (props) => {
   return (
     <>
       <Dropdown
-        border="none"
+      
         isOpen={props.isOpen}
-        onMouseOver={props.hoverHandler}
-        onClick={props.hoverHandler}
+       
+        onClick={props.onClick}
         menu={menuList}
-        hoverShadow="4"
+
+
         shadow="2"
-        hoverBg="#00FF7F"
+       
         opacity="90%"
-        className={props.className}
+        
+        w="15rem"
+        rounded="0"
+        m={{ b: "1rem" }}
+        bg="white"
+        textColor="black"
+        border="1px solid"
+        borderColor="black"
+        hoverBg="black"
+        hoverTextColor="white"
+        hoverBorderColor="#567da9"
+        hoverShadow="4"
       >
         {props.title}
       </Dropdown>

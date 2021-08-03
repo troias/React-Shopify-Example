@@ -2,85 +2,54 @@ import React, { useEffect } from "react";
 import { Container, Button, Row } from "atomize";
 import Collapse from "../../../Menu/Collapse";
 import { useSelector, useDispatch } from 'react-redux'
+import MenuModal from '../MenuModal/MenuModal'
 
 
 
 
 
 const Menu = () => {
-   
-    const menu = useSelector(state => state.showDropdown) 
+
+    const menu = useSelector(state => state)
     const dispatch = useDispatch()
 
+    console.log(menu)
     useEffect(() =>
-       
-        console.log(menuState), [menuState])
 
-    const hoverHandler = () => {
+
+        [])
+
+    const clickHandler = (id, index) => {
+        console.log("id", id)
+       
         dispatch({
-            type: "SHOW-DROPDOWN",
+            type: "TOGGLE-DROPDOWN",
+            payload: {id, index},
         });
     };
 
     return (
         <Container bg="white">
             <Row justify="space-between" m="1px">
-                <Button
-                    w="15rem"
-                    rounded="0"
-                    m={{ b: "1rem" }}
-                    bg="white"
-                    textColor="black"
-                    border="1px solid"
-                    borderColor="black"
-                    hoverBg="black"
-                    hoverTextColor="white"
-                    hoverBorderColor="#567da9"
-                    hoverShadow="4"
-                >
+
+            {
+               
+               menu.options.map((menuItem, index) => {
+                   return (
                     <Collapse
-                        options={menu.options}
-                        title={"Shop Categories"}
-                        isOpen={menu.showDropdown}
-                        hoverHandler={hoverHandler}
-                    />
-                </Button>
-                <Button
-                    hoverBg="black"
-                    hoverTextColor="white"
-                    hoverBorderColor="#567da9"
-                    hoverShadow="4"
-                    w="15rem"
-                    rounded="0"
-                    bg="white"
-                    textColor="black"
-                    border="1px solid"
-                    borderColor="black"
-                ></Button>
-                <Button
-                    hoverBg="black"
-                    hoverTextColor="white"
-                    hoverBorderColor="#567da9"
-                    hoverShadow="4"
-                    w="15rem"
-                    rounded="0"
-                    bg="white"
-                    textColor="black"
-                    border="1px solid"
-                    borderColor="black"
-                ></Button>
-                <Button
-                    hoverBg="black"
-                    hoverTextColor="white"
-                    hoverBorderColor="#567da9"
-                    hoverShadow="4"
-                    w="15rem"
-                    rounded="0"
-                    bg="white"
-                    textColor="black"
-                    border="1px solid"
-                    borderColor="black"
-                ></Button>
+                    options={menu.options}
+                    title={menuItem.title}
+                    isOpen={menuItem.isOpen}
+                    onClick={() => clickHandler(menuItem.id, index)}
+                   
+                />
+                   )
+               })
+            }
+               
+                 <MenuModal>
+
+                 </MenuModal>
             </Row>
         </Container>
     );

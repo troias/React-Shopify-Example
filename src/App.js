@@ -16,6 +16,7 @@ import { FooterWrapper } from './component/UI/Layout/Footer/FooterWrapper'
 import Menu from './component/UI/Layout/MegaMenu/Menu/Menu'
 import { Provider } from 'react-redux'
 import store  from './reduxStore/Index'
+
 const debug =
   process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 
