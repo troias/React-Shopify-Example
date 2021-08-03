@@ -36,7 +36,7 @@ const Carousel = () => {
     return (
         <Div
             d="flex"
-            
+            bg="#efefef"
            
             
         >

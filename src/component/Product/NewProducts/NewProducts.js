@@ -8,7 +8,7 @@ import p4 from "../../../Assets/Images/dummyProductImages/p1.jpg";
 
 const NewProducts = () => {
     return (
-        <Container d="flex" flexWrap="wrap" p="0">
+        <Container d="flex" flexWrap="wrap" p="0" bg="#efefef">
             <Div d="flex" w="100%" justify="center" p="0">
                 <Row w="100%" justify="center" h="70px" align="center">
                     <Text textColor="black" textSize="heading" fontFamily='Spectral SC' textWeight="bold">New Products</Text>
