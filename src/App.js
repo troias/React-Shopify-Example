@@ -15,7 +15,8 @@ import Footer from './component/UI/Layout/Footer/Footer'
 import { FooterWrapper } from './component/UI/Layout/Footer/FooterWrapper'
 import Menu from './component/UI/Layout/MegaMenu/Menu/Menu'
 import { Provider } from 'react-redux'
-import store  from './reduxStore/Index'
+import store from './reduxStore/Index'
+import MenuModal from './component/UI/Modals/MenuModal/MenuModal'
 
 const debug =
   process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
@@ -39,6 +40,8 @@ function App() {
                   <Cart />
                   <Menu />
                 </Header>
+                <MenuModal />
+
 
                 <Switch>
                   <Route path="/product/:id">
@@ -54,13 +57,15 @@ function App() {
                     <HomePage />
                   </Route>
                 </Switch>
+
+
                 <FooterWrapper>
                   <Footer />
                 </FooterWrapper>
 
+
               </Provider>
             </HomePageLayout>
-
           </ThemeContextProvider>
         </Router>
       </StyletronProvider>

@@ -6,6 +6,7 @@ import HeroSection from "../pages/HeroSection/HeroSection";
 import Collections from "./Collections";
 import Carousel from "../component/UI/Carousel/Carousel";
 import NewProducts from "../component/Product/NewProducts/NewProducts";
+import MenuModal from "../component/UI/Modals/MenuModal/MenuModal"
 
 const HomePage = () => {
   const { fetchAllProducts, products } = useContext(ShopContext);
@@ -22,6 +23,7 @@ const HomePage = () => {
 
   return (
     <Container>
+      {/* <MenuModal/> */}
       <Div bgSize="cover" bgPos="center">
         <Div w="100%">
           <HeroSection
@@ -42,6 +44,7 @@ const HomePage = () => {
 
         <Collections />
       </Div>
+    
     </Container>
   );
 };
