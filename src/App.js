@@ -40,7 +40,7 @@ function App() {
                   <Cart />
                   <Menu />
                 </Header>
-                <MenuModal />
+                {/* <MenuModal /> */}
 
 
                 <Switch>
