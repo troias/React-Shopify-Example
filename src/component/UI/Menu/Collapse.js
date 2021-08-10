@@ -14,15 +14,20 @@ const Collapse = (props) => {
     props.isOpen()
     
   }
-  console.log("active", props.active)
-  let bgc = "white"
+  const hoverHandler = (id) => {
+    props.hovered(id, "MainMenu")
+  }
+
+ 
+  let bgc = "black"
   props.active && (bgc = "black")
 
   let btc = "black"
   props.active && (btc = "white")
+
   return (
     <>
-      <Dropdown
+      <Button
         isOpen={onOpenHandler}
         onClick={onClickHandler}
         shadow="2"
@@ -36,12 +41,13 @@ const Collapse = (props) => {
         }}
         border="1px solid"
         borderColor="black"
-        hoverBg="black"
+        hoverBg="white"
         hoverBorderColor="#567da9"
         hoverShadow={{b: "black"}}
+        onMouseEnter={() => hoverHandler(props.id)}
       >
         {props.title}
-      </Dropdown>
+      </Button>
     </>
   );
 };

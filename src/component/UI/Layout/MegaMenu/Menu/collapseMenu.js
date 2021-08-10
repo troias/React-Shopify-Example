@@ -1,5 +1,5 @@
 import React from 'react'
-
+ import { Container, Row, Div, Col } from "atomize";
 
  const CollapseMenu = (props) => {
 
@@ -7,9 +7,9 @@ import React from 'react'
 
     return (
        
-        <div>
-        
-        </div>
+        <Div bg="black">
+          
+        </Div>
     
     )
 }
