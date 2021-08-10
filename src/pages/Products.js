@@ -9,10 +9,11 @@ const Products = () => {
     useEffect(() => {
         setLoading(true)
         fetchAllProducts();
+        getCollections()
       }, []);
 
-    const { products,  fetchAllProducts } = useContext(ShopContext);
-
+    const { products,  fetchAllProducts, getCollections, collections } = useContext(ShopContext);
+      console.log("collections", collections)
     if (!products && loading) return <div> ...Loading </div>;
 
     return (

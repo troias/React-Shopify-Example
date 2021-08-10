@@ -8,7 +8,8 @@ const defaultReducerState = {
     checkout: {},
     isCartOpen: false,
     test: "testing",
-    cart: {}
+    cart: {}, 
+    collections: [],
 
 }
 
@@ -25,6 +26,7 @@ const clientWithTranslatedContent = Client.buildClient({
 });
 
 const shopReducer = (state, action) => {
+
     switch (action.type) {
         case "FETCH_PRODUCTS":
             return {
@@ -72,6 +74,11 @@ const shopReducer = (state, action) => {
                 ...state,
                 checkout: action.payload
             }
+            case "GET_CATEGORY":
+                 return {
+                    ...state, 
+                    collections: action.payload
+            }
         default:
             return state
 
@@ -91,19 +98,15 @@ export const ShopContextProvider = (props) => {
          
         } else {
             createCheckout()
-         
+            
         }
-       
 
- 
-
-     
     }, [])
 
 
 
     const createCheckout = async () => {
-        
+            
         try {
             const checkout = await client.checkout.create()
             const res = await checkout
@@ -121,6 +124,23 @@ export const ShopContextProvider = (props) => {
         }
       
 
+    }
+
+    const getCollections = async () => {
+        try {
+            const req = await client.collection.fetchAllWithProducts()
+            const res = await req.json()
+                console.log("collections", res);
+              
+            
+              dispatch({
+                  type: "GET_CATEGORY",
+                  payload: res
+              })
+        }
+        catch (err) {
+
+        }
     }
 
     const addItemToCheckout = async (variantId, quantity, customAttributes) => {
@@ -218,6 +238,7 @@ export const ShopContextProvider = (props) => {
         fetchAllProducts,
         addItemToCheckout,
         fetchCheckOut, 
+        getCollections
         
 
     }
