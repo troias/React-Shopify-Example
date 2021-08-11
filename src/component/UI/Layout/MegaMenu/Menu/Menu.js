@@ -81,7 +81,7 @@ const Menu = () => {
 
                  
                 <CollapseMenu
-                  options={menuItem.isOpen && menu.currentMenuList}
+                  options={ menu.currentMenuList}
                   isOpen={open}
                   key={menuItem.id}
                   dimensions={menuItem.dimensions}

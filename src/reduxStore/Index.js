@@ -95,7 +95,8 @@ const defaultStore = {
         {
             title: "Collections",
             url: "/collection",
-            id: 2, isOpen: false,
+            id: 2, 
+            isOpen: false,
             modalItem: false,
             isHovered: false,
             currentMenuItem: false,
@@ -130,7 +131,6 @@ const defaultStore = {
 
 }
 
-
 const menuReducer = (state = defaultStore, action) => {
     switch (action.type) {
         case "TOGGLE-DROPDOWN":
@@ -139,13 +139,11 @@ const menuReducer = (state = defaultStore, action) => {
                 ...state.menuOptions,
             ]
 
-
             const res = copyOfOptions
 
             res.map(x => (x.id === action.payload.id)
                 && (x.isOpen = !x.isOpen) &&
                 (x.ModalItem = true))
-
 
             return {
                 ...state,
@@ -189,8 +187,6 @@ const menuReducer = (state = defaultStore, action) => {
                 return stateObjCopy
             }
 
-
-
             return {
                 ...state,
                 shopByCategory: stateCopy
@@ -222,15 +218,12 @@ const menuReducer = (state = defaultStore, action) => {
                     ...state.menuOptions,
                 ]
              
-                copyOfDropDownOptions6.map(x => x.currentMenuItem !== state.menuOptions )
-                console.log("copyOfDropDownOptions6", copyOfDropDownOptions6)
+               const filteredSubMenu = copyOfDropDownOptions6.filter(x => x.isOpen)
+               let list = [...filteredSubMenu]
 
-                // const  currMenuItem = action.payload.menuOptions.map(x => x.currentMenuItem)
-                // console.log("currMenuItem", currMenuItem)
-            
                 return {
                     ...state,
-                    currentMenuList: [copyOfDropDownOptions6]
+                    currentMenuList: list
                 }
 
         default:

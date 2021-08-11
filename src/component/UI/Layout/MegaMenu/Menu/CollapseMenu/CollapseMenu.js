@@ -11,17 +11,18 @@ const CollapseMenu = (props) => {
 
 
     <>
-
-      {props.options.map((name, index) => (
+     { console.log("options", props.options)}
+      { props.isOpen && props.options.map((x, index) => (
 
         <Div w="inherit" id="" bg="white" d="flex" >
           <Col bg="grey">
-            <Link key={name.id} to={name.url} >
+            <Link key={x.id} to={x.url} >
               <Anchor
+              textColor="black"
                d="block" 
                p={{ y: "0.25rem" }} 
-                onMouseEnter={() => hoverHandler(name.id )}  >
-                {name.title}
+                onMouseEnter={() => hoverHandler(x.id )}  >
+                {x.title}
               </Anchor>
             </Link>
           </Col>
@@ -29,7 +30,7 @@ const CollapseMenu = (props) => {
 
 
 
-            {name.isHovered && name.subCategory.map(x => {
+            {/* {x.isHovered && x.subCategory.map(x => {
               
               return (
                 <Div d="flex" flexDir="column" >
@@ -37,7 +38,7 @@ const CollapseMenu = (props) => {
                  
                 </Div>
               )
-            }) }
+            }) } */}
 
            
 
