@@ -13,7 +13,7 @@ const Products = () => {
       }, []);
 
     const { products,  fetchAllProducts, getCollections, collections } = useContext(ShopContext);
-      console.log("collections", collections)
+   
     if (!products && loading) return <div> ...Loading </div>;
 
     return (

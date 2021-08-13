@@ -3,6 +3,7 @@ import { createStore } from 'redux'
 const defaultStore = {
 
     currentMenuList: [],
+    currentMenuItemIndex: 0,
     shopByCategory: [
         {
             title: "Products",
@@ -55,24 +56,14 @@ const defaultStore = {
 
             ]
 
-        }
-    ],
-    shopByBrands: [
-        {
-            title: "Addidas",
-            url: "/brands/addidas",
-            id: 1
-        }
+        },
     ],
 
-    shopByCollections: [
-        {
-            title: "Summer Collection",
-            url: "/collections/addidas",
-            id: 1
-        }
-    ],
+    menuStyle: [
+        { stucture: [
 
+        ]}
+    ],
 
     menuOptions: [
 
@@ -86,9 +77,28 @@ const defaultStore = {
             currentMenuItem: false,
             list: [{
 
-                title: "Summer Collection",
+                title: "Category",
                 url: "/collections/addidas",
-                id: 1
+                id: 1,
+                subCategory: [
+                    {
+                        title: "Shoes",
+                        url: "/shoes",
+                        id: 1
+                    },
+                    {
+                        title: "Shoes",
+                        url: "/shoes",
+                        id: 2
+                    },
+                    {
+                        title: "Shoes",
+                        url: "/shoes",
+                        id: 3
+                    }
+    
+                ]
+
             }
             ]
         },
@@ -102,9 +112,27 @@ const defaultStore = {
             currentMenuItem: false,
             list: [
                 {
-                    title: "Summer Collection",
+                    title: "Collections",
                     url: "/collections/addidas",
-                    id: 1
+                    id: 1, 
+                    subCategory: [
+                        {
+                            title: "Shoes",
+                            url: "/shoes",
+                            id: 1
+                        },
+                        {
+                            title: "Shoes",
+                            url: "/shoes",
+                            id: 2
+                        },
+                        {
+                            title: "Shoes",
+                            url: "/shoes",
+                            id: 3
+                        }
+        
+                    ]
                 }
             ]
         },
@@ -118,9 +146,27 @@ const defaultStore = {
             currentMenuItem: false,
             list: [
                 {
-                    title: "Summer Collection",
+                    title: "Sales",
                     url: "/collections/addidas",
-                    id: 1
+                    id: 1, 
+                    subCategory: [
+                        {
+                            title: "Shoes",
+                            url: "/shoes",
+                            id: 1
+                        },
+                        {
+                            title: "Shoes",
+                            url: "/shoes",
+                            id: 2
+                        },
+                        {
+                            title: "Shoes",
+                            url: "/shoes",
+                            id: 3
+                        }
+        
+                    ]
                 }
             ]
         },
@@ -133,6 +179,27 @@ const defaultStore = {
 
 const menuReducer = (state = defaultStore, action) => {
     switch (action.type) {
+
+        case "CHANGLE-MENU-COMP":
+
+            const copyOfOptions5 = [
+                ...state.menuOptions,
+            ]
+            
+      
+
+            let indexItemNum = copyOfOptions5.findIndex(x => x.id === action.payload.id)
+        
+
+          
+            console.log("currentMenuItemIndex",indexItemNum)
+            // console.log("currentMenuItemIndex",state.currentMenuItemIndex)
+            
+
+            return {
+                ...state,
+                currentMenuItemIndex: indexItemNum
+            }
         case "TOGGLE-DROPDOWN":
 
             const copyOfOptions = [

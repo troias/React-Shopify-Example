@@ -21,7 +21,7 @@ const Carousel = () => {
         if (index === 0) return;
         setIndex(index - 1);
         setXPosition(xPosition + width);
-        // console.log("cliked")
+    
     };
     const handleClicknext = () => {
         if (index === images.length - 1) {
@@ -31,7 +31,7 @@ const Carousel = () => {
             setIndex(index + 1);
             setXPosition(xPosition - width);
         }
-        // console.log("cliked")
+     
     };
     return (
         <Div

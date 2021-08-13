@@ -19,7 +19,7 @@ const NavBar = () => {
 
     useEffect(() => {
         const width = document.getElementById('menu').clientWidth
-        console.log(width)
+       
         setWidth(width)
     }, [])
 
@@ -32,7 +32,7 @@ const NavBar = () => {
     const darkModeHandler = () => {
         
         toggleTheme()
-        console.log("themeCTX.darkMode", darkMode )
+ 
      
     }
 

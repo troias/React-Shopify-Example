@@ -2,7 +2,7 @@ import React from 'react'
 import { Div, Tag, Anchor, Icon, Button, Dropdown, Row, Col } from "atomize";
 import { Link } from "react-router-dom";
 
-const CollapseMenu = (props) => {
+const CollapseCollectionsMenu = (props) => {
 
   const hoverHandler = (id) => {
     props.hovered(id,  "SubMenu")
@@ -40,8 +40,7 @@ const CollapseMenu = (props) => {
                 </Div>
               )
             }) }
-      
-
+          
            
 
 
@@ -73,4 +72,4 @@ const CollapseMenu = (props) => {
   )
 }
 
-export default CollapseMenu
+export default CollapseCollectionsMenu
