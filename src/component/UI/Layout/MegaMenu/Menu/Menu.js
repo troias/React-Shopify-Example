@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CollapseMenu from "./CollapseMenu/CollapseMenu";
 import CollapseCollectionsMenu from "./CollapseMenu/CollapesCollectionsMenu";
 import CollapseSalesMenu from "./CollapseMenu/CollapseSalesMenu";
+import CollapseCategoryMenu from "./CollapseMenu/CollapseCategoryMenu";
 
 const Menu = () => {
   const menu = useSelector((state) => state);
@@ -51,79 +52,37 @@ const Menu = () => {
   };
 
   const SubMenuComponent = () => {
+    let menuList = menu.currentMenuList;
+    let currentComp;
 
-    let item = []
-    console.log("item", item)
-    switch (menu.currentMenuIndex) {
+    switch (menu.currentMenuItemIndex) {
       case 0:
-        item = menu.menuOptions.map((menuItem, index) => {
-          const open = menuItem.isOpen;
-          return (
-            <>
-              {open && (
-                <CollapseMenu
-                  options={menu.currentMenuList}
-                  isOpen={open}
-                  key={menuItem.id}
-                  dimensions={menuItem.dimensions}
-                  style={{
-                    backgroundColor: "black",
-                  }}
-                  hovered={hoverdHandler}
-                />
-              )}
-            </>
-          );
-        });
-        console.log("item", item)
-        return item;
-        case 1:
-        item = menu.menuOptions.map((menuItem, index) => {
-          const open = menuItem.isOpen;
-          return (
-            <>
-              {open && (
-                <CollapseMenu
-                  options={menu.currentMenuList}
-                  isOpen={open}
-                  key={menuItem.id}
-                  dimensions={menuItem.dimensions}
-                  style={{
-                    backgroundColor: "black",
-                  }}
-                  hovered={hoverdHandler}
-                />
-              )}
-            </>
-          );
-        });
-        console.log("item", item)
-        return item;
-        case 2:
-        item = menu.menuOptions.map((menuItem, index) => {
-          const open = menuItem.isOpen;
-          return (
-            <>
-              {open && (
-                <CollapseMenu
-                  options={menu.currentMenuList}
-                  isOpen={open}
-                  key={menuItem.id}
-                  dimensions={menuItem.dimensions}
-                  style={{
-                    backgroundColor: "black",
-                  }}
-                  hovered={hoverdHandler}
-                />
-              )}
-            </>
-          );
-        });
-        console.log("item", item)
-        return item;
+        currentComp = <CollapseCategoryMenu
+          menuProps={menuList}
+          hoverdHandler={hoverdHandler}
+        />;
+
+        return currentComp;
+      case 1:
+        currentComp = (
+          <CollapseCollectionsMenu
+            menuProps={menuList}
+            hoverdHandler={hoverdHandler}
+          />
+        );
+
+        return currentComp;
+      case 2:
+        currentComp = (
+          <CollapseSalesMenu
+            menuProps={menuList}
+            hoverdHandler={hoverdHandler}
+          />
+        );
+        return currentComp;
 
       default:
-        return item;
+        return currentComp;
     }
   };
 

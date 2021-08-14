@@ -4,60 +4,6 @@ const defaultStore = {
 
     currentMenuList: [],
     currentMenuItemIndex: 0,
-    shopByCategory: [
-        {
-            title: "Products",
-            url: "/products",
-            id: 1,
-            isOpen: false,
-            isHovered: false,
-            subCategory: [
-                {
-                    title: "Shoes",
-                    url: "/shoes",
-                    id: 1
-                },
-                {
-                    title: "Shoes",
-                    url: "/shoes",
-                    id: 2
-                },
-                {
-                    title: "Shoes",
-                    url: "/shoes",
-                    id: 3
-                }
-
-            ]
-
-        },
-        {
-            title: "Shoes",
-            url: "/Shoes",
-            id: 2,
-            isOpen: false,
-            isHovered: false,
-            subCategory: [
-                {
-                    title: "Shoes",
-                    url: "/shoes",
-                    id: 1
-                },
-                {
-                    title: "Shoes",
-                    url: "/shoes",
-                    id: 2
-                },
-                {
-                    title: "Shoes",
-                    url: "/shoes",
-                    id: 3
-                }
-
-            ]
-
-        },
-    ],
 
     menuStyle: [
         { stucture: [
@@ -219,45 +165,46 @@ const menuReducer = (state = defaultStore, action) => {
         case "ON-HOVER":
 
             let stateCopy
-            let stateObjCopy
+            // let stateObjCopy
 
-            if (action.payload.type === "MainMenu") {
+            // if (action.payload.type === "MainMenu") {
                 stateCopy = [
                     ...state.menuOptions
                 ]
 
-                stateCopy.map(mainMenuCategory =>
-                    (mainMenuCategory.id === action.payload.id) &&
-                    (mainMenuCategory.isHovered = true,
-                        mainMenuCategory.isOpen = true,
-                        mainMenuCategory.currentMenuItem = true))
+                stateCopy.map(mainMenuItem =>
+                    (mainMenuItem.id === action.payload.id) &&
+                    (mainMenuItem.isHovered = true,
+                        mainMenuItem.isOpen = true,
+                        mainMenuItem.currentMenuItem = true))
 
-                stateObjCopy = {
+                const stateObjCopy = {
                     ...state,
                     menuOptions: stateCopy
                 }
 
                 return stateObjCopy
-            }
-            if (action.payload.type === "SubMenu") {
-                stateCopy = [
-                    ...state.shopByCategory
-                ]
-                stateCopy.map(subCategory =>
-                    (subCategory.id === action.payload.id) &&
-                    (subCategory.isHovered = true))
-                stateObjCopy = {
-                    ...state,
-                    shopByCategory: stateCopy
-                }
+            // }
+            // if (action.payload.type === "SubMenu") {
+            //     stateCopy = [
+            //         ...state.shopByCategory
+            //     ]
+            //     stateCopy.map(subCategory =>
+            //         (subCategory.id === action.payload.id) &&
+            //         (subCategory.isHovered = true))
+            //     stateObjCopy = {
+            //         ...state,
+            //         shopByCategory: stateCopy
+            //     }
 
-                return stateObjCopy
-            }
+            //     return stateObjCopy
+            // }
 
-            return {
-                ...state,
-                shopByCategory: stateCopy
-            }
+            // return {
+            //     ...state,
+            //     shopByCategory: stateCopy
+            // }
+            return 
 
         case "SET-INTIALSTATE":
             return {
