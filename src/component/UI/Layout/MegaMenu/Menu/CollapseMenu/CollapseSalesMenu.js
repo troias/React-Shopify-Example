@@ -8,7 +8,7 @@ const CollapseSalesMenu = (props) => {
 
   
   const hoverHandler = (id) => {
-    // props.hoverdHandler(id, "SubMenu");
+    props.hoverdHandler(id, "SubMenu");
   };
 
   const SalesMenuList = () => (

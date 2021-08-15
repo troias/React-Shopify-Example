@@ -6,8 +6,10 @@ const CollapseCollectionsMenu = (props) => {
   const { menuProps } = props;
 
   console.log("menuProps", menuProps)
+  console.log("subMenuHoverState", menuProps)
+
   const hoverdHandler = (id) => {
-    // props.hoverdHandler(id, "SubMenu");
+    props.hoverdHandler(id, "SubMenu");
   };
 
   const MenuList = () => (
