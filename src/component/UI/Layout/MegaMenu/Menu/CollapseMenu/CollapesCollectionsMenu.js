@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const CollapseCollectionsMenu = (props) => {
   const { menuProps } = props;
 
-  console.log("menuProps", menuProps)
-  console.log("subMenuHoverState", menuProps)
+  // console.log("menuProps", menuProps)
+  // console.log("subMenuHoverState", menuProps)
 
   const hoverdHandler = (id) => {
     props.hoverdHandler(id, "SubMenu");

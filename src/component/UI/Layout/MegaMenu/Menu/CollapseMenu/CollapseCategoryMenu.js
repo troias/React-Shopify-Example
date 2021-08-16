@@ -7,22 +7,25 @@ const CollapseCategoryMenu = (props) => {
     const { menuProps } = props;
 
     // console.log("menuProps", menuProps)
-    const hoverdHandler = (id) => {
-        props.hoverdHandler(id, "SubMenu");
+    const hoverdHandler = (id, index) => {
+        // console.log("hoverdHandlerID", id)
+        // console.log("hoverdHandlerIndex", index)
+        props.hoverdHandler( id, "SubMenu", index, );
     };
 
     const SubCategory = (props) => {
         const [...subCategory] = props.props.subCategory;
         const isHovered = props.props.subMenuIsHovered
+        const isOpen = props.props.isOpen
         // const { isHovered } = props.props.subMenuIsHovered;
-        // console.log("SubCategoryProps", subCategory)
+        console.log("SubCategoryIsOpen", isOpen)
         console.log("isHovered", props.props.subMenuIsHovered)
         
         return (
             <>
                 {subCategory && subCategory.map(x => <>
                    
-                          {isHovered && <li>  {x.title} </li>}
+                          {isOpen && isHovered && <li>  {x.title} </li>}
                      </>)}
             </>
         )
@@ -36,10 +39,10 @@ const CollapseCategoryMenu = (props) => {
             const { list } = props.props;
             const { subMenuIsHovered } = props.props;
             subMenuItems = list
-            const {...obj } = list 
+            
             // console.log("testObj",  obj)
             // console.log("list2", list)
-            // console.log("subMenuIsHovered", subMenuIsHovered)
+            // console.log("subMenuItems", subMenuItems)
         }
        
         // console.log("list", subMenuItems)
@@ -47,33 +50,22 @@ const CollapseCategoryMenu = (props) => {
         return (
             <>
                 {   subMenuItems !== undefined  && 
-                    subMenuItems.map((x) => {
+                    subMenuItems.map((x, i) => {
 
                         return (
 
                             <Row>
+                                {/* {console.log("id", x.id)} */}
                                 <Col>
                                     <Link key={x.id} to={x.url}>
                                         <Anchor
                                             textColor="black"
                                             d="block"
                                             p={{ y: "0.25rem" }}
-                                            onMouseEnter={() => hoverdHandler(x.id, "subMenu")}
+                                            onMouseEnter={() => hoverdHandler(x.id, i )}
                                         >
                                             {x.title}
                                         </Anchor>
-                                        {/* <Div d="flex" flexDir="column">
-                                            {x.title}
-                                        </Div>
-                                        <Div d="flex" flexDir="column">
-                                            {x.title}
-                                        </Div>
-                                        <Div d="flex" flexDir="column">
-                                            {x.title}
-                                        </Div>
-                                        <Div d="flex" flexDir="column">
-                                            {x.title}
-                                        </Div> */}
                                     </Link>
                                 </Col>
 

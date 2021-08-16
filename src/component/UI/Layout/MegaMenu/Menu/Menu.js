@@ -16,17 +16,20 @@ const Menu = () => {
 
   useEffect(() => []);
 
-  const hoverdHandler = (id, type) => {
+  const hoverdHandler = (id, type, index,  ) => { 
+    // console.log("type", type)
     dispatch({
       type: "ON-HOVER",
       payload: {
+        index: index,
         type: type,
         id: id,
+        
       },
     });
     dispatch({
       type: "SET-All-OTHERDROPDOWNS-TO-FALSE",
-      payload: { id },
+      payload: { id , type, index},
     });
     dispatch({
       type: "CHANGLE-MENU-LIST",
@@ -36,6 +39,7 @@ const Menu = () => {
       type: "CHANGLE-MENU-COMP",
       payload: {
         id: id,
+        index: index
       },
     });
   };
@@ -53,8 +57,8 @@ const Menu = () => {
 
   const SubMenuComponent = () => {
     let menuList = menu.currentMenuList;
-    let currentComp;
-
+    let currentComp = [];
+    // console.log("currentMenuList",menuList)
     switch (menu.currentMenuItemIndex) {
       case 0:
         currentComp = <CollapseCategoryMenu

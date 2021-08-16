@@ -18,13 +18,13 @@ const defaultStore = {
       isOpen: false,
       modalItem: false,
       isHovered: false,
-      
       currentMenuItem: false,
       list: [
         {
           title: "Category",
           url: "/collections/addidas",
           id: 1,
+          isOpen: true,
           subMenuIsHovered: false,
           subCategory: [
             {
@@ -48,6 +48,7 @@ const defaultStore = {
           title: "Category2",
           url: "/collections/addidas",
           id: 2,
+          isOpen: false,
           subMenuIsHovered: false,
           subCategory: [
             {
@@ -76,7 +77,6 @@ const defaultStore = {
       isOpen: false,
       modalItem: false,
       isHovered: false,
-      subMenuIsHovered: false,
       currentMenuItem: false,
       list: [
         {
@@ -84,6 +84,7 @@ const defaultStore = {
           url: "/collections/addidas",
           id: 1,
           isHovered: false,
+          subMenuIsHovered: false,
           subCategory: [
             {
               title: "Shoes",
@@ -111,7 +112,6 @@ const defaultStore = {
       isOpen: false,
       modalItem: false,
       isHovered: false,
-      subMenuIsHovered: false,
       currentMenuItem: false,
       list: [
         {
@@ -119,6 +119,7 @@ const defaultStore = {
           url: "/collections/addidas",
           id: 1,
           isHovered: false,
+          subMenuIsHovered: false,
           subCategory: [
             {
               title: "Shoes",
@@ -152,7 +153,8 @@ const menuReducer = (state = defaultStore, action) => {
         (x) => x.id === action.payload.id
       );
 
-      console.log("currentMenuItemIndex", indexItemNum);
+      // console.log("currentMenuItemIndex", indexItemNum);
+      // console.log("currentMenuItemID", action.payload.id);
       // console.log("currentMenuItemIndex",state.currentMenuItemIndex)
 
       return {
@@ -167,21 +169,22 @@ const menuReducer = (state = defaultStore, action) => {
       res.map(
         (x) =>
           x.id === action.payload.id &&
-          (x.isOpen = !x.isOpen) &&
-          (x.ModalItem = true)
+          (x.isOpen = !x.isOpen) 
       );
-
+        // console.log("res", res)
       return {
         ...state,
         menuOptions: res,
       };
     case "ON-HOVER":
       let stateCopy;
-     
+      // console.log("hoverType", action.payload)
+      // console.log("currentMenuList", state.currentMenuList)
+
       switch (action.payload.type) {
         case "MainMenu":
           stateCopy = [...state.menuOptions];
-
+      
           stateCopy.map(
             (mainMenuItem) =>
               mainMenuItem.id === action.payload.id &&
@@ -194,46 +197,40 @@ const menuReducer = (state = defaultStore, action) => {
             ...state,
             menuOptions: stateCopy,
           };
-
+          // console.log("mainMenu", stateCopy)
           return stateObjCopy;
 
         case "SubMenu":
           stateCopy = [...state.menuOptions];
-         
-          // const listCopy = [...state.menuOptions.list];
-          // console.log("listCopy", listCopy)
-          // listCopy.map(
-          //   (subCategoryMenuItem) =>
-          //     subCategoryMenuItem.id === action.payload.id &&
-          //     (subCategoryMenuItem.subMenuIsHovered = true)
-          // );
-          stateCopy.map((subCategoryMenuItem) =>  subCategoryMenuItem.id === action.payload.id)
-          // stateCopy.list.map(
-          //   (subCategoryMenuItem) =>
-          //     subCategoryMenuItem.id === action.payload.id && 
-          //     (subCategoryMenuItem.subMenuIsHovered === true))
-          const listCopy = stateCopy.filter(x => x.id === action.payload.id 
-           )
-          let testObj = listCopy.map(x => x.id === action.payload.id && {...x.list})
-            testObj = [{...testObj}]
-          // testObj.map(x => x x => x.id === action.payload.id )
-
-          let newArr = []
-          for (const x  in testObj) {
+          let listCopy = [...state.currentMenuList]
           
-            newArr.push({x})
-          }
-          // listCopy.map(x => () => x.listCopy.map(x.subMenuIsHovered === true))
-          //  listCopy.map(x =>  
-          //   x.list.map(x => x.id === action.payload.id && (x.subMenuIsHovered === true)))
-          console.log("listCopy", listCopy)
-          console.log("testObj", testObj)
-          console.log("newArr", newArr)
-          console.log("SubMenu", stateCopy)
+          // stateCopy.map(
+          //   (x, index) =>
+          //     index === action.payload.index &&
+          //      (x.isHovered = true)
+          // );
+
+          // const listCopy = stateCopy.filter((x) => x.id === action.payload.id );
+
+          const [{ ...obj }] = listCopy;
+          // // listCopy.map(x => x.id === action.payload.id )
+          const newObj = obj.list.map( 
+            (x) => 
+            { 
+              // console.log("x", x)
+              return(x.id === action.payload.id && (x.subMenuIsHovered = true) )
+            }
+          );
+          // const newObj = obj
+          // console.log("index", action)
+          // console.log("listCopy", listCopy);
+          // console.log("testObj", newObj);
+          // console.log("obj", obj)
+          // console.log("newArr", newArr)
+          // console.log("SubMenuState", stateCopy);
           const subMenuObjCopy = {
             ...state,
-            menuOptions: stateCopy
-            
+            menuOptions: stateCopy,
           };
 
           return subMenuObjCopy;
@@ -248,13 +245,30 @@ const menuReducer = (state = defaultStore, action) => {
 
     case "SET-All-OTHERDROPDOWNS-TO-FALSE":
       const copyOfDropDownOptions = [...state.menuOptions];
+      console.log("actionType" , action.payload.type)
+      console.log("actionID" , action.payload.id)
+      console.log("actionIndex" , action.payload.index)
+   
+      if ( action.payload.type === "MainMenu") {
+        copyOfDropDownOptions.map(
+          (x) =>
+            x.id !== action.payload.id &&
+            (x.isOpen = false) &&
+            (x.isHovered = false)
+        );
+      } 
+      if ( action.payload.type === "SubMenu") {
+       
+        const newArr = copyOfDropDownOptions.filter(x => x.id === action.payload.id)
+        console.log("SET-All-OTHERDROPDOWNS-TO-FALSE" , copyOfDropDownOptions)
+        const [{...obj}] = newArr 
+        const arrO =  obj.list.map((x, i) => i !== action.payload.index && 
+        (x.subMenuIsHovered = false))
+  
+        console.log("OBJ", arrO )
+      } 
 
-      copyOfDropDownOptions.map(
-        (x) =>
-          x.id !== action.payload.id &&
-          (x.isOpen = false) &&
-          (x.isHovered = false)
-      );
+  
 
       return {
         ...state,
@@ -262,8 +276,9 @@ const menuReducer = (state = defaultStore, action) => {
       };
 
     case "CHANGLE-MENU-LIST":
+     
       const copyOfDropDownOptions6 = [...state.menuOptions];
-
+      // console.log("CHANGLE-MENU-LIST", copyOfDropDownOptions6)
       const filteredSubMenu = copyOfDropDownOptions6.filter((x) => x.isOpen);
       let list = [...filteredSubMenu];
 
