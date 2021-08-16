@@ -18,14 +18,14 @@ const defaultStore = {
       isOpen: false,
       modalItem: false,
       isHovered: false,
-      subMenuIsHovered: false,
+      
       currentMenuItem: false,
       list: [
         {
           title: "Category",
           url: "/collections/addidas",
           id: 1,
-          isHovered: false,
+          subMenuIsHovered: false,
           subCategory: [
             {
               title: "Shoes",
@@ -44,6 +44,29 @@ const defaultStore = {
             },
           ],
         },
+        {
+          title: "Category2",
+          url: "/collections/addidas",
+          id: 2,
+          subMenuIsHovered: false,
+          subCategory: [
+            {
+              title: "Test",
+              url: "/shoes",
+              id: 1,
+            },
+            {
+              title: "Test",
+              url: "/shoes",
+              id: 2,
+            },
+            {
+              title: "Test",
+              url: "/shoes",
+              id: 3,
+            },
+          ],
+        },
       ],
     },
     {
@@ -53,6 +76,7 @@ const defaultStore = {
       isOpen: false,
       modalItem: false,
       isHovered: false,
+      subMenuIsHovered: false,
       currentMenuItem: false,
       list: [
         {
@@ -87,6 +111,7 @@ const defaultStore = {
       isOpen: false,
       modalItem: false,
       isHovered: false,
+      subMenuIsHovered: false,
       currentMenuItem: false,
       list: [
         {
@@ -174,14 +199,41 @@ const menuReducer = (state = defaultStore, action) => {
 
         case "SubMenu":
           stateCopy = [...state.menuOptions];
-          stateCopy.map(
-            (subCategoryMenuItem) =>
-              subCategoryMenuItem.id === action.payload.id &&
-              (subCategoryMenuItem.isHovered = true)
-          );
+         
+          // const listCopy = [...state.menuOptions.list];
+          // console.log("listCopy", listCopy)
+          // listCopy.map(
+          //   (subCategoryMenuItem) =>
+          //     subCategoryMenuItem.id === action.payload.id &&
+          //     (subCategoryMenuItem.subMenuIsHovered = true)
+          // );
+          stateCopy.map((subCategoryMenuItem) =>  subCategoryMenuItem.id === action.payload.id)
+          // stateCopy.list.map(
+          //   (subCategoryMenuItem) =>
+          //     subCategoryMenuItem.id === action.payload.id && 
+          //     (subCategoryMenuItem.subMenuIsHovered === true))
+          const listCopy = stateCopy.filter(x => x.id === action.payload.id 
+           )
+          let testObj = listCopy.map(x => x.id === action.payload.id && {...x.list})
+            testObj = [{...testObj}]
+          // testObj.map(x => x x => x.id === action.payload.id )
+
+          let newArr = []
+          for (const x  in testObj) {
+          
+            newArr.push({x})
+          }
+          // listCopy.map(x => () => x.listCopy.map(x.subMenuIsHovered === true))
+          //  listCopy.map(x =>  
+          //   x.list.map(x => x.id === action.payload.id && (x.subMenuIsHovered === true)))
+          console.log("listCopy", listCopy)
+          console.log("testObj", testObj)
+          console.log("newArr", newArr)
+          console.log("SubMenu", stateCopy)
           const subMenuObjCopy = {
             ...state,
-            shopByCategory: stateCopy,
+            menuOptions: stateCopy
+            
           };
 
           return subMenuObjCopy;

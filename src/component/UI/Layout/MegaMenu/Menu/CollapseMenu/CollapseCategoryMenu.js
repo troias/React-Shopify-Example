@@ -6,33 +6,48 @@ import { Link } from "react-router-dom";
 const CollapseCategoryMenu = (props) => {
     const { menuProps } = props;
 
-    console.log("menuProps", menuProps)
+    // console.log("menuProps", menuProps)
     const hoverdHandler = (id) => {
         props.hoverdHandler(id, "SubMenu");
     };
 
     const SubCategory = (props) => {
         const [...subCategory] = props.props.subCategory;
-        console.log("SubCategoryProps", subCategory)
+        const isHovered = props.props.subMenuIsHovered
+        // const { isHovered } = props.props.subMenuIsHovered;
+        // console.log("SubCategoryProps", subCategory)
+        console.log("isHovered", props.props.subMenuIsHovered)
+        
         return (
             <>
-                {subCategory.map(x => <>
-                    <li>
-                        {x.title}
-                    </li> </>)}
+                {subCategory && subCategory.map(x => <>
+                   
+                          {isHovered && <li>  {x.title} </li>}
+                     </>)}
             </>
         )
     }
 
     const SubMenuList = (props) => {
-        // const { list } = props.props;
+        let subMenuItems = []
+       
 
-        console.log("list", props)
+        if ( props.props !== undefined ) {
+            const { list } = props.props;
+            const { subMenuIsHovered } = props.props;
+            subMenuItems = list
+            const {...obj } = list 
+            // console.log("testObj",  obj)
+            // console.log("list2", list)
+            // console.log("subMenuIsHovered", subMenuIsHovered)
+        }
+       
+        // console.log("list", subMenuItems)
         // console.log("props", props)
         return (
             <>
-                {
-                    props.props.list.map((x) => {
+                {   subMenuItems !== undefined  && 
+                    subMenuItems.map((x) => {
 
                         return (
 
@@ -43,25 +58,34 @@ const CollapseCategoryMenu = (props) => {
                                             textColor="black"
                                             d="block"
                                             p={{ y: "0.25rem" }}
-                                            onMouseEnter={() => hoverdHandler(x.id)}
+                                            onMouseEnter={() => hoverdHandler(x.id, "subMenu")}
                                         >
                                             {x.title}
                                         </Anchor>
+                                        {/* <Div d="flex" flexDir="column">
+                                            {x.title}
+                                        </Div>
                                         <Div d="flex" flexDir="column">
                                             {x.title}
                                         </Div>
+                                        <Div d="flex" flexDir="column">
+                                            {x.title}
+                                        </Div>
+                                        <Div d="flex" flexDir="column">
+                                            {x.title}
+                                        </Div> */}
                                     </Link>
                                 </Col>
 
                                 <Col>
-                                    <SubCategory props={x} />
+                                   { <SubCategory props={x}  /> }
                                 </Col>
 
                             </Row>
 
-                        );
+                        ) 
                     })}
-
+                   
 
             </>
         )
@@ -70,7 +94,7 @@ const CollapseCategoryMenu = (props) => {
     const MenuList = (props) => {
         const [MainSublist] = props.props;
         // console.log("listCate", list)
-        console.log("cateProps", MainSublist)
+        // console.log("cateProps", MainSublist)
         return (
             <>
 
