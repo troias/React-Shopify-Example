@@ -14,12 +14,13 @@ const CollapseCategoryMenu = (props) => {
     };
 
     const SubCategory = (props) => {
+       
         const [...subCategory] = props.props.subCategory;
         const isHovered = props.props.subMenuIsHovered
         const isOpen = props.props.isOpen
         // const { isHovered } = props.props.subMenuIsHovered;
-        console.log("SubCategoryIsOpen", isOpen)
-        console.log("isHovered", props.props.subMenuIsHovered)
+        // console.log("SubCategoryIsOpen", isOpen)
+        // console.log("isHovered", props.props.subMenuIsHovered)
         
         return (
             <>

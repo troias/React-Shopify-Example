@@ -11,7 +11,7 @@ import CollapseCategoryMenu from "./CollapseMenu/CollapseCategoryMenu";
 const Menu = () => {
   const menu = useSelector((state) => state);
   const dispatch = useDispatch();
-
+  console.log("CurrSubMenu", menu.currSubMenu )
   console.log("state", menu);
 
   useEffect(() => []);
@@ -21,25 +21,25 @@ const Menu = () => {
     dispatch({
       type: "ON-HOVER",
       payload: {
-        index: index,
-        type: type,
-        id: id,
+         index,
+         type,
+         id,
         
       },
     });
     dispatch({
-      type: "SET-All-OTHERDROPDOWNS-TO-FALSE",
+      type: "SET-All-OTHER-MENUITEMS-TO-FALSE",
       payload: { id , type, index},
     });
     dispatch({
       type: "CHANGLE-MENU-LIST",
-      payload: menu,
+    
     });
     dispatch({
-      type: "CHANGLE-MENU-COMP",
+      type: "FIND-MENUITEM-INDEX",
       payload: {
-        id: id,
-        index: index
+        id,
+         index
       },
     });
   };
@@ -104,7 +104,7 @@ const Menu = () => {
                 onClick={() => clickHandler(menuItem.id, index)}
                 active={open}
                 id={menuItem.id}
-                hovered={hoverdHandler}
+                hovered={() => hoverdHandler(menuItem.id, "MainMenu", index)}
               />
             </>
           );
