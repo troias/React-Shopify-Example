@@ -11,7 +11,7 @@ import CollapseCategoryMenu from "./CollapseMenu/CollapseCategoryMenu";
 const Menu = () => {
   const menu = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log("CurrSubMenu", menu.currSubMenu )
+  // console.log("CurrSubMenu", menu.currSubMenu )
   console.log("state", menu);
 
   useEffect(() => []);

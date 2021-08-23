@@ -3,7 +3,7 @@ import { createStore } from "redux";
 const defaultStore = {
   currentMenuList: [],
   currentMenuItemIndex: 0,
-  currSubMenu: [],
+  currSubMenu: [{}],
   menuStyle: [
     {
       stucture: [],
@@ -24,7 +24,7 @@ const defaultStore = {
           title: "Category",
           url: "/collections/addidas",
           id: 1,
-          isOpen: true,
+          isOpen: false,
           subMenuIsHovered: false,
           subCategory: [
             {
@@ -179,20 +179,13 @@ const menuReducer = (state = defaultStore, action) => {
     case "ON-HOVER":
       let stateCopy;
 
-      console.log("hoverType", action.payload)
-      console.log("currentMenuList", state.currentMenuList)
-          console.log("OnHoverActionType" , action.payload.type)
-      console.log("OnHoveractionID" , action.payload.id)
-      console.log("OnHoverMenuOptionsIndex", action.payload.index)
-      //if index == index open it
-
       switch (action.payload.type) {
         case "MainMenu":
           stateCopy = [...state.menuOptions];
-        
+
           stateCopy.map(
             (x, index) =>
-            index === action.payload.index &&
+              index === action.payload.index &&
               ((x.isHovered = true),
                 (x.isOpen = true),
                 (x.currentMenuItem = true))
@@ -200,38 +193,30 @@ const menuReducer = (state = defaultStore, action) => {
 
           const stateObjCopy = {
             ...state,
-          
-            menuOptions: stateCopy, 
+
+            menuOptions: stateCopy,
           };
           console.log("mainMenu", stateCopy)
           return stateObjCopy;
 
         case "SubMenu":
           // stateCopy = [...state.menuOptions];
-          let listCopy = [...state.currentMenuList]
+          const listCopy = [...state.currentMenuList]
+          console.log("sub menu index", action.payload.id)
 
-          // stateCopy.map(
-          //   (x, index) =>
-          //     index === action.payload.index &&
-          //      (x.isHovered = true)
-          // );
-
-          // const listCopy = stateCopy.filter((x) => x.id === action.payload.id );
-
-          const [{ ...obj }] = listCopy;
-          // // listCopy.map(x => x.id === action.payload.id )
-          const newObj = obj.list.map((x, i) => i === action.payload.index && (x.subMenuIsHovered = true))
-          // const newObj = obj
-          // console.log("index", action)
-          // console.log("listCopy", listCopy);
-          // console.log("testObj", newObj);
-          // console.log("obj", newObj)
+          listCopy[0].list.map((x, i) => i === action.payload.index && (x.isOpen = true) && (x.subMenuIsHovered = true))
+          
+        
+          console.log("listCopy", listCopy);
+          // console.log("testObj", obj);
+          // console.log("SubMenulistCopy", nc)
           // console.log("payloadIndex", action.payload.index)
           // console.log("newArr", newArr)
           // console.log("SubMenuState", listCopy);
           const subMenuObjCopy = {
             ...state,
-            currSubMenu: newObj,
+            currentMenuList: listCopy,
+            currSubMenu: listCopy
           };
 
           return subMenuObjCopy;
@@ -247,39 +232,42 @@ const menuReducer = (state = defaultStore, action) => {
 
     case "SET-All-OTHER-MENUITEMS-TO-FALSE":
       const copyOfDropDownOptions = [...state.menuOptions];
-      console.log("cURRMENUITEMS",  copyOfDropDownOptions)
-      console.log("actionType" , action.payload.type)
+      const copyOfDropDownSubMenuOptions = [...state.currentMenuList];
+      // console.log("cURRMENUITEMS",  copyOfDropDownOptions)
+      // console.log("actionType" , action.payload.type)
       // console.log("actionID" , action.payload.id)
-      console.log("MenuOptionsIndex", action.payload.index)
+      // console.log("MenuOptionsIndex", action.payload.index)
 
 
       if (action.payload.type === "MainMenu") {
         copyOfDropDownOptions.map(
           (x, i) =>
-          i !== action.payload.index && (x.isOpen = false)
+            i !== action.payload.index && (x.isOpen = false)
         );
-      //   copyOfDropDownOptions.map(
-      //     (x, i) =>
-      //       i === action.payload.index &&
-      //       (x.isOpen = true) &&
-      //       (x.isHovered = true)
-      //   );
+        //   copyOfDropDownOptions.map(
+        //     (x, i) =>
+        //       i === action.payload.index &&
+        //       (x.isOpen = true) &&
+        //       (x.isHovered = true)
+        //   );
       }
       if (action.payload.type === "SubMenu") {
 
-        // const newArr = copyOfDropDownOptions.filter(x => x.id === action.payload.id)
-        // console.log("SET-All-OTHERDROPDOWNS-TO-FALSE" , copyOfDropDownOptions)
-        // const [{...obj}] = newArr 
-        // const arrO =  obj.list.map((x, i) => i !== action.payload.index && 
-        // (x.subMenuIsHovered = false))
-        // console.log("SubMenu")
-        // console.log("OBJ", arrO )
+  
 
+
+       copyOfDropDownOptions[0].list.map( 
+          (x, i) => 
+           i !== action.payload.index && (x.isOpen = false) && (x.isHovered = false)
+          
+        )
+        console.log("filteredSub", copyOfDropDownOptions)
       }
-      console.log("menuArr", copyOfDropDownOptions)
+     
+      
       return {
         ...state,
-        menuOptions: copyOfDropDownOptions
+        currentMenuList: copyOfDropDownOptions
       }
 
 
