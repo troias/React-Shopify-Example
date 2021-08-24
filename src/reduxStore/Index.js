@@ -205,14 +205,10 @@ const menuReducer = (state = defaultStore, action) => {
           console.log("sub menu index", action.payload.id)
 
           listCopy[0].list.map((x, i) => i === action.payload.index && (x.isOpen = true) && (x.subMenuIsHovered = true))
-          
-        
+
+
           console.log("listCopy", listCopy);
-          // console.log("testObj", obj);
-          // console.log("SubMenulistCopy", nc)
-          // console.log("payloadIndex", action.payload.index)
-          // console.log("newArr", newArr)
-          // console.log("SubMenuState", listCopy);
+
           const subMenuObjCopy = {
             ...state,
             currentMenuList: listCopy,
@@ -231,62 +227,79 @@ const menuReducer = (state = defaultStore, action) => {
       };
 
     case "SET-All-OTHER-MENUITEMS-TO-FALSE":
-      const copyOfDropDownOptions = [...state.menuOptions];
-      const copyOfDropDownSubMenuOptions = [...state.currentMenuList];
-      // console.log("cURRMENUITEMS",  copyOfDropDownOptions)
-      // console.log("actionType" , action.payload.type)
-      // console.log("actionID" , action.payload.id)
-      // console.log("MenuOptionsIndex", action.payload.index)
+
+      let stateCopy1
+      switch (action.payload.type) {
+
+        case "MainMenu":
+          const copyOfDropDownOptions = [...state.menuOptions];
+          copyOfDropDownOptions.map(
+            (x, i) =>
+              i !== action.payload.index && (x.isOpen = false)
+          );
 
 
-      if (action.payload.type === "MainMenu") {
-        copyOfDropDownOptions.map(
-          (x, i) =>
-            i !== action.payload.index && (x.isOpen = false)
-        );
-        //   copyOfDropDownOptions.map(
-        //     (x, i) =>
-        //       i === action.payload.index &&
-        //       (x.isOpen = true) &&
-        //       (x.isHovered = true)
-        //   );
+          const stateCopy1 = {
+            ...state,
+            currentMenuList: copyOfDropDownOptions,
+
+          };
+          return stateCopy1;
+
+        case "SubMenu":
+
+          const copyOfDropDownSubMenuOptions = [...state.currentMenuList];
+          copyOfDropDownSubMenuOptions[0].list.map(
+            (x, i) =>
+              i !== action.payload.index && (x.subMenuIsHovered = false) && (x.isOpen = false)
+
+          )
+          const subMenuObjCopy = {
+            ...state,
+            currentMenuList: copyOfDropDownSubMenuOptions,
+            // currSubMenu: copyOfDropDownSubMenuOptions
+          };
+
+          return subMenuObjCopy
+
+
+
+        default: return stateCopy1
       }
-      if (action.payload.type === "SubMenu") {
 
-  
-
-
-       copyOfDropDownOptions[0].list.map( 
-          (x, i) => 
-           i !== action.payload.index && (x.isOpen = false) && (x.isHovered = false)
-          
-        )
-        console.log("filteredSub", copyOfDropDownOptions)
-      }
-     
-      
-      return {
-        ...state,
-        currentMenuList: copyOfDropDownOptions
-      }
 
 
     case "CHANGLE-MENU-LIST":
-      // console.log("MenuUtemInde", action.payload)
-      const copyOfDropDownOptions6 = [...state.menuOptions];
-      // console.log("CHANGLE-MENU-LIST", copyOfDropDownOptions6)
-      const filteredSubMenu = copyOfDropDownOptions6.filter((x, i) =>
+
+      
+      let list 
+           const copyOfDropDownOptions6 = [...state.menuOptions];
+      if (action.payload.type === "MainMenu") {
+        console.log("CHANGLE-MENU-LIST", action.payload.type)
+    
+
+        const filteredSubMenu = copyOfDropDownOptions6.filter((x, i) =>
 
 
-        x.isOpen
+          x.isOpen
 
-      )
+        )
 
-      let list = [...filteredSubMenu];
+        let list = [...filteredSubMenu];
+       
+
+        const menuObj = {
+          ...state, 
+             currentMenuList: list,
+      }
+
+      return menuObj
+    } else
+      
 
       return {
         ...state,
-        currentMenuList: list,
+        // currentMenuList: list,
       };
 
     default:

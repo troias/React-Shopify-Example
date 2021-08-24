@@ -31,17 +31,20 @@ const Menu = () => {
       type: "SET-All-OTHER-MENUITEMS-TO-FALSE",
       payload: { id , type, index},
     });
+    console.log("type", type)
     dispatch({
       type: "CHANGLE-MENU-LIST",
-    
-    });
-    dispatch({
-      type: "FIND-MENUITEM-INDEX",
       payload: {
-        id,
-         index
-      },
+        type
+       }
     });
+    // dispatch({
+    //   type: "FIND-MENUITEM-INDEX",
+    //   payload: {
+    //     id,
+    //      index
+    //   },
+    // });
   };
 
   const clickHandler = (id, index) => {
@@ -49,10 +52,10 @@ const Menu = () => {
       type: "TOGGLE-DROPDOWN",
       payload: { id, index },
     });
-    dispatch({
-      type: "SET-All-OTHERDROPDOWNS-TO-FALSE",
-      payload: { id, index },
-    });
+    // dispatch({
+    //   type: "SET-All-OTHERDROPDOWNS-TO-FALSE",
+    //   payload: { id, index },
+    // });
   };
 
   const SubMenuComponent = () => {

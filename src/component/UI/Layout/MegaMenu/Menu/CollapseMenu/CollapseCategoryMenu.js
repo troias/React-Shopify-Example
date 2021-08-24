@@ -46,7 +46,7 @@ const CollapseCategoryMenu = (props) => {
             // console.log("subMenuItems", subMenuItems)
         }
        
-        // console.log("list", subMenuItems)
+        console.log("list", subMenuItems)
         // console.log("props", props)
         return (
             <>
@@ -87,7 +87,7 @@ const CollapseCategoryMenu = (props) => {
     const MenuList = (props) => {
         const [MainSublist] = props.props;
         // console.log("listCate", list)
-        // console.log("cateProps", MainSublist)
+        console.log("cateProps", MainSublist)
         return (
             <>
 
