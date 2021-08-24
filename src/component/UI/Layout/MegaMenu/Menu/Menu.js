@@ -11,13 +11,13 @@ import CollapseCategoryMenu from "./CollapseMenu/CollapseCategoryMenu";
 const Menu = () => {
   const menu = useSelector((state) => state);
   const dispatch = useDispatch();
-  // console.log("CurrSubMenu", menu.currSubMenu )
+
   console.log("state", menu);
 
   useEffect(() => []);
 
   const hoverdHandler = (id, type, index,  ) => { 
-    // console.log("type", type)
+ 
     dispatch({
       type: "ON-HOVER",
       payload: {
@@ -31,7 +31,7 @@ const Menu = () => {
       type: "SET-All-OTHER-MENUITEMS-TO-FALSE",
       payload: { id , type, index},
     });
-    console.log("type", type)
+  
     dispatch({
       type: "CHANGLE-MENU-LIST",
       payload: {
@@ -61,7 +61,7 @@ const Menu = () => {
   const SubMenuComponent = () => {
     let menuList = menu.currentMenuList;
     let currentComp = [];
-    // console.log("currentMenuList",menuList)
+ 
     switch (menu.currentMenuItemIndex) {
       case 0:
         currentComp = <CollapseCategoryMenu
